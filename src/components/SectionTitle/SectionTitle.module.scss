@@ -1,0 +1,75 @@
+$mobile-sm: 476px;
+
+.wrapper {
+  text-align: center;
+
+  .title {
+    margin: 0;
+    display: inline-block;
+    color: #000;
+    font-size: 2rem;
+    font-weight: 500;
+    font-family: "Dosis", sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    margin: 0 0 30px;
+    letter-spacing: 5px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateX(-50%);
+      left: 50%;
+      right: 0;
+      height: 1px;
+      width: 100%;
+      background-color: #000;
+
+      @media only screen and (min-width: $mobile-sm) {
+        transform: translateY(-50%, -50%);
+        // max-width: 500px; //Commented due to inconsistiency in PSD layout...
+        max-width: 600px;
+        width: 110%;
+      }
+    }
+
+    @media only screen and (min-width: $mobile-sm) {
+      font-size: 3.125rem;
+    }
+  }
+
+  .clippingMask {
+    @extend .title;
+
+    -webkit-background-clip: text;
+    /* let's assume that one day it's supported */
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    color: transparent;
+  }
+
+  .gradient {
+    @extend .clippingMask;
+    background-image: #62a2ad; /* Old browsers */
+    background-image: -moz-linear-gradient(
+      top,
+      #62a2ad 0%,
+      #8dbab3 100%
+    ); /* FF3.6-15 */
+    background-image: -webkit-linear-gradient(
+      top,
+      #62a2ad 0%,
+      #8dbab3 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background-image: linear-gradient(
+      to bottom,
+      #62a2ad 0%,
+      #8dbab3 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#62a2ad', endColorstr='#8dbab3',GradientType=0 ); /* IE6-9 */
+  }
+}
