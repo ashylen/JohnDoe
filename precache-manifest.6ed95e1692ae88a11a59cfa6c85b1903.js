@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/JohnDoe/static/media/discography-bg.6b0cdff0.png"
   },
   {
-    "revision": "d266e007099bfe386402",
-    "url": "/JohnDoe/static/css/main.4111bb0c.chunk.css"
+    "revision": "54315a22df8bc152269c",
+    "url": "/JohnDoe/static/css/main.9e59689a.chunk.css"
   },
   {
     "revision": "5d070c86516bccd0096a85bfcfb12d4e",
     "url": "/JohnDoe/static/media/tours-bg.5d070c86.png"
   },
   {
-    "revision": "9a454a781e101020295b",
-    "url": "/JohnDoe/static/js/1.9a454a78.chunk.js"
+    "revision": "bd38b0b2416643c4e4d8",
+    "url": "/JohnDoe/static/js/1.bd38b0b2.chunk.js"
   },
   {
     "revision": "7d879104202288cb2b45",
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/JohnDoe/static/media/header-logo.2d644319.png"
   },
   {
-    "revision": "d266e007099bfe386402",
-    "url": "/JohnDoe/static/js/main.d266e007.chunk.js"
+    "revision": "54315a22df8bc152269c",
+    "url": "/JohnDoe/static/js/main.54315a22.chunk.js"
   },
   {
     "revision": "636fc433b5f41283f9097bd899442b20",
@@ -48,11 +48,11 @@ self.__precacheManifest = [
     "url": "/JohnDoe/static/media/title-1-bg.ca390be1.png"
   },
   {
-    "revision": "9a454a781e101020295b",
-    "url": "/JohnDoe/static/css/1.1a25496e.chunk.css"
+    "revision": "bd38b0b2416643c4e4d8",
+    "url": "/JohnDoe/static/css/1.c9fe78ae.chunk.css"
   },
   {
-    "revision": "42f5cc514554d5361f20815267b352b5",
+    "revision": "203eeeffe165bb884d239821da8797ec",
     "url": "/JohnDoe/index.html"
   }
 ];
