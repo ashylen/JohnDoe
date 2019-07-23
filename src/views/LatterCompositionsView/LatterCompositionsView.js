@@ -19,7 +19,6 @@ import {
   faCommentAlt,
   faPlus
 } from "@fortawesome/free-solid-svg-icons";
-
 import json from "../../data/latter-compositions.json";
 
 const socialBoxTestContent = {
@@ -49,31 +48,27 @@ const LatterCompositionsView = () => (
           <div className={styles.wrapper}>
             <SectionTitle>Latter Compositions </SectionTitle>
             <SectionDescription>{json.sectionDescription}</SectionDescription>
-            {context.compositions.length ? (
-              context.compositions.map(item => (
-                <div className={styles.inner}>
-                  <div className={styles.description}>
-                    <TimelineHeader secondary={true} date={item.date}>
-                      {item.subText}
-                    </TimelineHeader>
-                    <Box
-                      header={item.header}
-                      text={item.text}
-                      buttonText={"Visit on iTunes"}
-                      buttonHref={item.href}
-                      socialBoxContent={socialBoxTestContent}
-                    />
+            {context.compositions.length
+              ? context.compositions.map(item => (
+                  <div className={styles.inner}>
+                    <div className={styles.description}>
+                      <TimelineHeader secondary={true} date={item.date}>
+                        {item.subText}
+                      </TimelineHeader>
+                      <Box
+                        header={item.header}
+                        text={item.text}
+                        buttonText={"Visit on iTunes"}
+                        buttonHref={item.href}
+                        socialBoxContent={socialBoxTestContent}
+                      />
+                    </div>
+                    <div className={styles.video}>
+                      {item.videoId && <YouTube videoId={item.videoId} />}
+                    </div>
                   </div>
-                  <div className={styles.video}>
-                    {item.videoId && <YouTube videoId={item.videoId} />}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <h1 className={styles.noItems}>
-                There's nothing here yet, please add some items!
-              </h1>
-            )}
+                ))
+              : null}
 
             <Button fixed openModalFn={context.openModalFn}>
               <FontAwesomeIcon icon={faPlus} color="#abacac" size="1x" />

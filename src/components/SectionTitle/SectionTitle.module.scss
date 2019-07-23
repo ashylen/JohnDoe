@@ -54,22 +54,6 @@ $mobile-sm: 476px;
 
   .gradient {
     @extend .clippingMask;
-    background-image: #62a2ad; /* Old browsers */
-    background-image: -moz-linear-gradient(
-      top,
-      #62a2ad 0%,
-      #8dbab3 100%
-    ); /* FF3.6-15 */
-    background-image: -webkit-linear-gradient(
-      top,
-      #62a2ad 0%,
-      #8dbab3 100%
-    ); /* Chrome10-25,Safari5.1-6 */
-    background-image: linear-gradient(
-      to bottom,
-      #62a2ad 0%,
-      #8dbab3 100%
-    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#62a2ad', endColorstr='#8dbab3',GradientType=0 ); /* IE6-9 */
+    background-image: linear-gradient(to bottom, #62a2ad 0%, #8dbab3 100%);
   }
 }

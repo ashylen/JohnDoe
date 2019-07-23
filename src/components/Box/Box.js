@@ -13,8 +13,7 @@ const Box = ({
   buttonClass,
   buttonHref,
   invertTextColor,
-  socialBoxContent,
-  ...props
+  socialBoxContent
 }) => (
   <React.Fragment>
     <div className={styles.wrapper}>

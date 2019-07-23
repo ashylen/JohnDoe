@@ -21,21 +21,21 @@ class Root extends React.Component {
     goToPreviousStep: false
   };
 
-  goToNextStep = (e, newItem) => {
+  goToNextStep = e => {
     e.preventDefault();
     this.setState({
       step: 2
     });
   };
 
-  goToPreviousStep = (e, newItem) => {
+  goToPreviousStep = e => {
     e.preventDefault();
     this.setState({
       step: 1
     });
   };
 
-  addItem = (e, newItem) => {
+  addItemToView = (e, newItem) => {
     if (newItem.videoId) {
       //Get VideoId from Youtube URL
       var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
@@ -72,7 +72,7 @@ class Root extends React.Component {
     const { isModalOpen } = this.state;
     const contextElements = {
       ...this.state,
-      addItem: this.addItem,
+      addItemToView: this.addItemToView,
       goToNextStep: this.goToNextStep,
       goToPreviousStep: this.goToPreviousStep,
       openModalFn: this.openModal,

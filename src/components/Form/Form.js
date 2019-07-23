@@ -7,6 +7,7 @@ import AppContext from "../../context";
 
 import Input from "../Input/Input";
 import Button from "../Button/Button";
+import SummaryList from "../SummaryList/SummaryList";
 import Title from "../SectionDescription/SectionDescription";
 
 import styles from "./Form.module.scss";
@@ -16,7 +17,7 @@ const initialState = {
   href: "",
   text: "",
   date: "",
-  dateObj: null,
+  dateObjectHelper: null,
   subText: "",
   videoId: "",
   goToPreviousStep: false
@@ -25,21 +26,15 @@ const initialState = {
 class Form extends React.Component {
   state = initialState;
 
-  handleGoToPreviousStep = () => {
-    this.setState({
-      goToPreviousStep: true
-    });
-  };
-
-  handleDateChange = value => {
-    if (value) {
-      let val = format(value, "dd.MM.yyyy", {
+  handleDateChange = dateObject => {
+    if (dateObject) {
+      let formattedDate = format(dateObject, "dd.MM.yyyy", {
         awareOfUnicodeTokens: true
       });
 
       this.setState({
-        date: val,
-        dateObj: value
+        date: formattedDate,
+        dateObjectHelper: dateObject
       });
     }
   };
@@ -73,8 +68,9 @@ class Form extends React.Component {
       <AppContext.Consumer>
         {context =>
           context.step !== 2 ? (
+            //Step 1
             <React.Fragment>
-              <div className={styles.formHeader}>Add a new composition!</div>
+              <div className={styles.formHeader}>Add a new composition</div>
               <div className={styles.wrapper}>
                 <form
                   autoComplete="off"
@@ -93,7 +89,6 @@ class Form extends React.Component {
                     name="href"
                     label="Link"
                   />
-
                   <Input
                     onChange={this.handleInputChange}
                     value={this.state.subText}
@@ -106,17 +101,15 @@ class Form extends React.Component {
                     name="videoId"
                     label="Paste Youtube Url"
                   />
-
                   <Datepicker
                     required
-                    selected={this.state.dateObj}
+                    selected={this.state.dateObjectHelper}
                     onSelect={value => this.handleDateChange(value)}
                     name="date"
                     dateFormat="dd.MM.yyyy"
                     placeholderText="Click to select date"
                     className={styles.datepicker}
                   />
-
                   <Input
                     onChange={this.handleInputChange}
                     value={this.state.text}
@@ -130,43 +123,21 @@ class Form extends React.Component {
               </div>
             </React.Fragment>
           ) : (
+            //Step 2
             <React.Fragment>
               <div className={styles.wrapper}>
                 <div className={styles.formHeader}>Summary</div>
                 <Title>&nbsp;</Title>
                 <div className={styles.form}>
-                  <Title>
-                    <strong>Composition header:</strong>
-                  </Title>
-                  <Title>{this.state.header}</Title>
-                  <Title>
-                    <strong>Link:</strong>
-                  </Title>
-                  <Title>{this.state.href}</Title>
-                  <Title>
-                    <strong>Date:</strong>
-                  </Title>
-                  <Title>{this.state.date}</Title>
-                  <Title>
-                    <strong>Album:</strong>
-                  </Title>
-                  <Title>{this.state.subText}</Title>
-                  <Title>
-                    <strong>YouTube URL:</strong>
-                  </Title>
-                  <Title>{this.state.videoId}</Title>
-                  <Title>
-                    <strong>Description:</strong>
-                  </Title>
-                  <Title>{this.state.text}</Title>
                   <div className={styles.modalNavigation}>
+                    <SummaryList state={this.state} />
                     <Button
                       secondary
                       onClick={e => context.goToPreviousStep(e, this.state)}
                     >
                       Back
                     </Button>
-                    <Button onClick={e => context.addItem(e, this.state)}>
+                    <Button onClick={e => context.addItemToView(e, this.state)}>
                       Add composition!
                     </Button>
                   </div>

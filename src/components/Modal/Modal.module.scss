@@ -1,3 +1,4 @@
+$mobile-md: 768px;
 $mobile-lg: 1023px;
 
 @keyframes fadeSlideIn {
@@ -23,17 +24,22 @@ $mobile-lg: 1023px;
 }
 
 .wrapper {
+  position: fixed;
+  overflow: auto;
+
+  max-height: 500px;
+  height: 95vh;
+  max-width: 485px;
+  width: 90vw;
   padding: 10px 20px;
   top: 2%;
   left: 0;
   right: 0;
   margin: 0 auto;
-  width: 90vw;
+
   background-color: white;
   box-shadow: 0 20px 40px -5px rgba(#abacac, 0.3);
-  position: fixed;
   z-index: 10;
-  max-width: 485px;
   animation: fadeSlideIn 0.5s;
 
   h2 {
@@ -45,55 +51,62 @@ $mobile-lg: 1023px;
     max-height: 43px;
     word-break: break-all;
   }
-  @media only screen and (min-width: $mobile-lg) {
-    top: 10%;
-  }
-}
 
-.closeButton {
-  width: 27px;
-  height: 27px;
-  background: transparent;
-  border: 1px solid #abacac;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  .closeButton {
+    width: 27px;
+    height: 27px;
+    background: transparent;
+    border: 1px solid #abacac;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 
-  z-index: 2;
+    z-index: 2;
 
-  &:hover {
-    background: #abacac;
+    &:hover {
+      background: #abacac;
+      &::before,
+      &::after {
+        background: #fff;
+      }
+    }
+
     &::before,
     &::after {
-      background: #fff;
+      content: "";
+      width: 16px;
+      height: 2px;
+      position: absolute;
+      background: #abacac;
+      display: block;
+      top: 47%;
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0 auto;
+      transform-origin: 50%;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
     }
   }
 
-  &::before,
-  &::after {
-    content: "";
-    width: 16px;
-    height: 2px;
-    position: absolute;
-    background: #abacac;
-    display: block;
-    top: 47%;
-    transform: translateY(-50%);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0 auto;
-    transform-origin: 50%;
+  @media only screen and (min-width: $mobile-md) {
+    max-height: unset;
+    height: unset;
+    overflow: initial;
   }
 
-  &::before {
-    transform: rotate(45deg);
-  }
-
-  &::after {
-    transform: rotate(-45deg);
+  @media only screen and (min-width: $mobile-lg) {
+    top: 10%;
   }
 }
 

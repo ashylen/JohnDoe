@@ -25,5 +25,3 @@ const SectionTitle = ({ children, textCustomize }) => {
 };
 
 export default SectionTitle;
-
-// TO DO, poprawić kolor fontów w stylach

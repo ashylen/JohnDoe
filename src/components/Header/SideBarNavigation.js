@@ -1,17 +1,16 @@
 import React from "react";
 
-import { HashLink as NavLink } from "react-router-hash-link";
+import { NavLink } from "react-router-dom";
 
 import styles from "./SideBarNavigation.module.scss";
 
-const SideBarNavigation = ({ navOnClickFn, ...props }) => {
+const SideBarNavigation = ({ navOnClickFn }) => {
   return (
     <aside className={styles.wrapper}>
       <ul className={styles.inner}>
         <li className={styles.navItem}>
           <NavLink
             exact
-            activeClassName={styles.navItemLinkActive}
             className={styles.navItemLink}
             to="/about"
             onClick={() => navOnClickFn("about")}
@@ -21,7 +20,6 @@ const SideBarNavigation = ({ navOnClickFn, ...props }) => {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            activeClassName={styles.navItemLinkActive}
             className={styles.navItemLink}
             to="/discography"
             onClick={() => navOnClickFn("discography")}
@@ -31,7 +29,6 @@ const SideBarNavigation = ({ navOnClickFn, ...props }) => {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            activeClassName={styles.navItemLinkActive}
             className={styles.navItemLink}
             to="/concert-tours"
             onClick={() => navOnClickFn("concert-tours")}
@@ -41,7 +38,6 @@ const SideBarNavigation = ({ navOnClickFn, ...props }) => {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            activeClassName={styles.navItemLinkActive}
             className={styles.navItemLink}
             to="/latter-compositions"
             onClick={() => navOnClickFn("latter-compositions")}
@@ -51,7 +47,6 @@ const SideBarNavigation = ({ navOnClickFn, ...props }) => {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            activeClassName={styles.navItemLinkActive}
             className={styles.navItemLink}
             to="/new-tracks"
             onClick={() => navOnClickFn("new-tracks")}
@@ -61,7 +56,6 @@ const SideBarNavigation = ({ navOnClickFn, ...props }) => {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            activeClassName={styles.navItemLinkActive}
             className={styles.navItemLink}
             to="/upcoming-events"
             onClick={() => navOnClickFn("upcoming-events")}
@@ -71,7 +65,6 @@ const SideBarNavigation = ({ navOnClickFn, ...props }) => {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            activeClassName={styles.navItemLinkActive}
             className={styles.navItemLink}
             to="/history"
             onClick={() => navOnClickFn("history")}
@@ -81,7 +74,6 @@ const SideBarNavigation = ({ navOnClickFn, ...props }) => {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            activeClassName={styles.navItemLinkActive}
             className={styles.navItemLink}
             to="/contact"
             onClick={() => navOnClickFn("contact")}

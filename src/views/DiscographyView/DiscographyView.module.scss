@@ -7,22 +7,22 @@ $mobile-lg: 1023px;
   padding-top: 30px; //To fix offest of sections for scrolling plugin
   padding-bottom: 100px;
 
+  .wrapper {
+    max-width: 1200px;
+    width: 90%;
+    margin: 10px auto 0;
+
+    @media only screen and (min-width: $mobile-lg) {
+      & {
+        margin: 65px auto 0;
+      }
+    }
+  }
+
   @media only screen and (min-width: $mobile-lg) {
     padding-bottom: 300px;
     padding-top: 1px;
     margin-bottom: 90px;
-  }
-}
-
-.wrapper {
-  max-width: 1200px;
-  width: 90%;
-  margin: 10px auto 0;
-
-  @media only screen and (min-width: $mobile-lg) {
-    & {
-      margin: 65px auto 0;
-    }
   }
 }
 

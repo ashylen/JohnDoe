@@ -1,7 +1,6 @@
 import React from "react";
 
 import { NavLink } from "react-router-dom";
-// import { NavHashLink as NavLink } from "react-router-hash-link";
 
 import HamburgerMenu from "react-hamburger-menu";
 
@@ -16,7 +15,6 @@ class HeaderNavigation extends React.Component {
     isMobile: window.innerWidth < 1024
   };
 
-  
   componentDidMount = () => {
     const path = window.location.pathname;
     setTimeout(() => {
@@ -24,7 +22,6 @@ class HeaderNavigation extends React.Component {
       const element = document.getElementById(id);
       if (element) element.scrollIntoView({ behavior: "smooth" });
     }, 0);
-    
   };
 
   handleResize = () => {
@@ -57,7 +54,7 @@ class HeaderNavigation extends React.Component {
 
   render() {
     window.addEventListener("resize", this.handleResize);
-    
+
     return (
       <nav className={styles.sticky}>
         {this.state.isMobile && (
@@ -88,7 +85,6 @@ class HeaderNavigation extends React.Component {
             <li className={styles.navItem}>
               <NavLink
                 exact
-                // activeClassName={styles.navItemLinkActive}
                 className={styles.navItemLink}
                 to="/about"
                 onClick={() => this.navOnClick("about")}
@@ -98,7 +94,6 @@ class HeaderNavigation extends React.Component {
             </li>
             <li className={styles.navItem}>
               <NavLink
-                // activeClassName={styles.navItemLinkActive}
                 className={styles.navItemLink}
                 to="/discography"
                 onClick={() => this.navOnClick("discography")}
@@ -108,7 +103,6 @@ class HeaderNavigation extends React.Component {
             </li>
             <li className={styles.navItem}>
               <NavLink
-                // activeClassName={styles.navItemLinkActive}
                 className={styles.navItemLink}
                 to="/concert-tours"
                 onClick={() => this.navOnClick("concert-tours")}
@@ -118,7 +112,6 @@ class HeaderNavigation extends React.Component {
             </li>
             <li className={styles.navItem}>
               <NavLink
-                // activeClassName={styles.navItemLinkActive}
                 className={styles.navItemLink}
                 to="/latter-compositions"
                 onClick={() => this.navOnClick("latter-compositions")}
@@ -128,7 +121,6 @@ class HeaderNavigation extends React.Component {
             </li>
             <li className={styles.navItem}>
               <NavLink
-                // activeClassName={styles.navItemLinkActive}
                 className={styles.navItemLink}
                 to="/new-tracks"
                 onClick={() => this.navOnClick("new-tracks")}
@@ -138,7 +130,6 @@ class HeaderNavigation extends React.Component {
             </li>
             <li className={styles.navItem}>
               <NavLink
-                // activeClassName={styles.navItemLinkActive}
                 className={styles.navItemLink}
                 to="/upcoming-events"
                 onClick={() => this.navOnClick("upcoming-events")}
@@ -148,7 +139,6 @@ class HeaderNavigation extends React.Component {
             </li>
             <li className={styles.navItem}>
               <NavLink
-                // activeClassName={styles.navItemLinkActive}
                 className={styles.navItemLink}
                 to="/history"
                 onClick={() => this.navOnClick("history")}
@@ -158,7 +148,6 @@ class HeaderNavigation extends React.Component {
             </li>
             <li className={styles.navItem}>
               <NavLink
-                // activeClassName={styles.navItemLinkActive}
                 className={styles.navItemLink}
                 to="/contact"
                 onClick={() => this.navOnClick("contact")}

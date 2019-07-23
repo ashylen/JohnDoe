@@ -1,6 +1,18 @@
 $border-color: #aeb2b2;
 $bg-color: #f5f6f6;
 
+@keyframes slidingBg {
+  0% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
+}
+
 .button {
   display: inline-block;
   max-width: 196px;
@@ -25,27 +37,11 @@ $bg-color: #f5f6f6;
       rgba(0, 0, 0, 0)
     );
     background-size: 700% 700%;
-
-    -webkit-animation: slidingBg 8s ease infinite;
-    -moz-animation: slidingBg 8s ease infinite;
-    -o-animation: slidingBg 8s ease infinite;
     animation: slidingBg 8s ease infinite;
-
-    @keyframes slidingBg {
-      0% {
-        background-position: 0% 100%;
-      }
-      50% {
-        background-position: 100% 49%;
-      }
-      100% {
-        background-position: 0% 52%;
-      }
-    }
     border: 1px solid #000;
   }
 
-  .text {
+  & .text {
     position: relative;
 
     &:after,
@@ -56,22 +52,21 @@ $bg-color: #f5f6f6;
       width: 5px;
       position: absolute;
       pointer-events: none;
+      background-color: #000;
+      background-color: #000;
     }
 
     &:after {
       top: 44%;
-
       transform: rotate(45deg);
-      background-color: #000;
     }
     &:before {
       top: 63%;
-
       transform: rotate(-45deg);
-      background-color: #000;
     }
   }
-  .invertText {
+
+  & .invertText {
     filter: invert(100%);
   }
 }
@@ -81,7 +76,6 @@ $bg-color: #f5f6f6;
   max-width: 196px;
   width: 100%;
   padding: 20px 12px;
-  border: 1px solid $border-color;
 
   text-align: center;
   font-size: 0.875rem;
@@ -93,20 +87,24 @@ $bg-color: #f5f6f6;
   transition: background-color 0.3s, border-color 0.3s;
 
   border: 1px solid transparent;
-  color: #000;
   background-position: center bottom;
   background-repeat: repeat;
   background-size: 110%;
 
   transition: background-size 0.3s, background-color 0.3s, border-color 0.3s;
 
+  .invertText {
+    filter: invert(100%);
+  }
+
   &:hover {
     background-size: 130%;
     border: 1px solid transparent;
   }
 
-  .text {
+  & .text {
     position: relative;
+    color: #000;
 
     &:after,
     &:before {

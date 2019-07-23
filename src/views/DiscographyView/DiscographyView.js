@@ -34,6 +34,7 @@ const DiscographyView = () => (
             buttonText={"PLAY"}
             buttonBg={Button1Bg}
             buttonClass={"secondary"}
+            invertTextColor={true}
           />
         </div>
         <div className={styles.track}>
@@ -44,7 +45,6 @@ const DiscographyView = () => (
             buttonText={"PLAY"}
             buttonBg={Button2Bg}
             buttonClass={"secondary"}
-            invertTextColor={true}
           />
         </div>
         <div className={styles.track}>
@@ -55,11 +55,8 @@ const DiscographyView = () => (
             buttonText={"PLAY"}
             buttonBg={Button3Bg}
             buttonClass={"secondary"}
-            invertTextColor={true}
           />
         </div>
-
-        {/* CONTENT */}
       </div>
     </article>
   </React.Fragment>
