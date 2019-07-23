@@ -2,10 +2,12 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ashylen.github.io/JohnDoe/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "gh-pages": "^2.0.1",
     "node-sass": "^4.12.0",
     "react": "^16.6.3",
     "react-burger-menu": "^2.6.10",
@@ -18,6 +20,8 @@
     "react-youtube": "^7.9.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
