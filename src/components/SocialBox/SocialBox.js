@@ -1,15 +1,26 @@
 import React from "react";
 
+import styles from "./SocialBox.module.scss";
+import {
+  faVolumeDown,
+  faHeart,
+  faShareSquare,
+  faCommentAlt
+} from "@fortawesome/free-solid-svg-icons";
+
 import SocialBoxItem from "../SocialBox/SocialBoxItem";
 
-import styles from "./SocialBox.module.scss";
+const SocialBox = ({socialBoxContent}) => {
+  const { auditions, likes, comments, shares } = socialBoxContent;
 
-const SocialBox = ({ socialBoxContent }) => {
-  let items = Object.entries(socialBoxContent).map((socialItem, index) => {
-    return (
-      <SocialBoxItem key={index} icon={socialItem[1].icon} count={socialItem[1].count} />
-    );
-  });
+  const items = (
+    <React.Fragment>
+      <SocialBoxItem icon={faVolumeDown} count={auditions.count} />
+      <SocialBoxItem icon={faHeart} count={likes.count} />
+      <SocialBoxItem icon={faShareSquare} count={comments.count} />
+      <SocialBoxItem icon={faCommentAlt} count={shares.count} />
+    </React.Fragment>
+  );
 
   return (
     <React.Fragment>
