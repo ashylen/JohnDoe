@@ -14,16 +14,12 @@ $mobile-lg: 1023px;
   color: rgba(0, 0, 0, 0.651);
   font-weight: 700;
   text-transform: uppercase;
-
-  @media only screen and (min-width: $mobile-lg) {
-    & {
-      margin-top: 30px;
-    }
-  }
+  margin-top: 30px;
 }
 
 .text {
   @extend .date;
   margin-top: 0;
   color: rgb(0, 0, 0);
+  word-break: break-word;
 }

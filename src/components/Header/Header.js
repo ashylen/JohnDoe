@@ -7,7 +7,7 @@ import styles from "./Header.module.scss";
 import headerBg from "../../assets/images/header-bg.png";
 import logo from "../../assets/images/header-logo.png";
 
-const Header = ({ openModalFn }) => {
+const Header = () => {
   return (
     <header
       id="about"
