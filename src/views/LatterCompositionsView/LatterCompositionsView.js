@@ -3,38 +3,35 @@ import React, { Component } from 'react';
 // Modules
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import YouTube from "react-youtube";
+import YouTube from 'react-youtube';
 
 // Utilities
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import {
   fetchItems,
   openCompositionsModal as openCompositionsModalAction,
-  closeCompositionsModal as closeCompositionsModalAction
+  closeCompositionsModal as closeCompositionsModalAction,
 } from '../../actions';
-import styles from "./LatterCompositionsView.module.scss";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import styles from './LatterCompositionsView.module.scss';
 import { GetYouTubeVideoId } from '../../utilities/Functions';
 
 // Components
-import Box from "../../components/Box/Box";
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import SectionDescription from "../../components/SectionDescription/SectionDescription";
-import TimelineHeader from "../../components/TimelineHeader/TimelineHeader";
-import Button from "../../components/Button/Button";
-import Modal from "../../components/Modal/Modal";
-
+import Box from '../../components/Box/Box';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import SectionDescription from '../../components/SectionDescription/SectionDescription';
+import TimelineHeader from '../../components/TimelineHeader/TimelineHeader';
+import Button from '../../components/Button/Button';
+import Modal from '../../components/Modal/Modal';
 
 class LatterCompositionsView extends Component {
   componentDidMount() {
     const { fetchCompositions } = this.props;
     fetchCompositions();
-  };
+  }
 
   render() {
-
     const { mainReducer, openCompositionsModal, closeCompositionsModal } = this.props;
     const { compositions, isCompositionsModalOpen } = mainReducer;
 
@@ -44,59 +41,90 @@ class LatterCompositionsView extends Component {
         <article id="latter-compositions" className={styles.article}>
           <div className={styles.wrapper}>
             <SectionTitle>Latter Compositions </SectionTitle>
-            <SectionDescription>"It's Time" was released as the lead single from Continued Silence and It's Time, both extended plays preceding Night Visions' release.</SectionDescription>
+            <SectionDescription>
+              &quot;It&#39;s Time&quot; was released as the lead single from Continued Silence and
+              It&#39;s Time, both extended plays preceding Night Visions&#39; release.
+            </SectionDescription>
 
-            {compositions ? compositions.map((item) => (
-              <div className={styles.inner} key={item.id}>
-                <div className={styles.description}>
+            {compositions
+              ? compositions.map(item => (
+                  <div className={styles.inner} key={item.id}>
+                    <div className={styles.description}>
+                      <TimelineHeader secondary date={item.date}>
+                        {item.subText}
+                      </TimelineHeader>
+                      <Box
+                        header={item.header}
+                        text={item.text}
+                        buttonText="Visit on iTunes"
+                        buttonHref={item.href}
+                        socialBoxContent={item}
+                      />
 
-                  <TimelineHeader secondary={true} date={item.date}>
-                    {item.subText}
-                  </TimelineHeader>
+                      <Button
+                        buttonClass="absoluteTL"
+                        openModalFn={() => {
+                          openCompositionsModal(true, item.id);
+                        }}
+                      >
+                        Edit Track
+                      </Button>
+                    </div>
 
-                  <Box
-                    header={item.header}
-                    text={item.text}
-                    buttonText={"Visit on iTunes"}
-                    buttonHref={item.href}
-                    socialBoxContent={item}
-                  />
+                    <div className={styles.video}>
+                      {item.youTubeUrl && <YouTube videoId={GetYouTubeVideoId(item.youTubeUrl)} />}
+                    </div>
+                  </div>
+                ))
+              : null}
 
-                  <Button buttonClass="absoluteTL" openModalFn={() =>{openCompositionsModal(true)}}>
-                    Edit Track
-                  </Button>
-
-                </div>
-
-                <div className={styles.video}>
-                  {item.youTubeUrl && <YouTube videoId={GetYouTubeVideoId(item.youTubeUrl)} />}
-                </div>
-                
-              </div>
-            )) : null}
-
-            <Button buttonClass="buttonFixed" openModalFn={() =>{openCompositionsModal(false)}}>
+            <Button
+              buttonClass="buttonFixed"
+              openModalFn={() => {
+                openCompositionsModal(false);
+              }}
+            >
               <FontAwesomeIcon icon={faPlus} color="#abacac" size="1x" />
             </Button>
           </div>
         </article>
       </React.Fragment>
     );
-  };
-};
+  }
+}
 
+LatterCompositionsView.defaultProps = {
+  mainReducer: {
+    compositions: {},
+  },
+};
 
 LatterCompositionsView.propTypes = {
   fetchCompositions: PropTypes.func.isRequired,
+  openCompositionsModal: PropTypes.func.isRequired,
+  closeCompositionsModal: PropTypes.func.isRequired,
+  mainReducer: PropTypes.shape({
+    isCompositionsModalOpen: PropTypes.bool.isRequired,
+    compositions: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+        header: PropTypes.string.isRequired,
+        href: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        youTubeUrl: PropTypes.string.isRequired,
+        subText: PropTypes.string.isRequired,
+      }),
+    ),
+  }),
 };
 
-const mapStateToProps = (state) => {
-  return state;
-};
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   fetchCompositions: () => dispatch(fetchItems('compositions')),
-  openCompositionsModal: (isEditMode) => dispatch(openCompositionsModalAction(isEditMode)),
+  openCompositionsModal: (isEditMode, idCurrentItem) =>
+    dispatch(openCompositionsModalAction(isEditMode, idCurrentItem)),
   closeCompositionsModal: () => dispatch(closeCompositionsModalAction()),
 });
 

@@ -1,19 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./Input.module.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './Input.module.scss';
 
 const Input = ({ tag: Tag, name, label, maxLength, error, ...props }) => {
-
   const formItemClass = error ? styles.formItemError : styles.formItem;
 
   return (
     <div className={formItemClass}>
       <Tag
-        className={Tag === "textarea" ? styles.textarea : styles.input}
+        className={Tag === 'textarea' ? styles.textarea : styles.input}
         type="text"
         name={name}
         id={name}
-        autoComplete={"off"}
+        autoComplete="off"
         // required
         // maxLength={maxLength}
         placeholder=" "
@@ -32,12 +31,12 @@ Input.propTypes = {
   tag: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  maxLength: PropTypes.number
+  maxLength: PropTypes.number,
 };
 
 Input.defaultProps = {
-  tag: "input",
-  maxLength: 200
+  tag: 'input',
+  maxLength: 200,
 };
 
 export default Input;

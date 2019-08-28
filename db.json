@@ -1,54 +1,39 @@
 {
   "compositions": [
     {
-      "id": 1,
-      "header": "Sam Feldt ft. Kimberly Anne - Show Me Love (EDX's Indian Summer Remix)",
       "text": "\"Radioactive\" is a song recorded by American rock band Imagine Dragons for their major-label debut EP Continued Silence and later on their debut studio album, Night Visions (2012), as the opening track. \"Radioactive\" was",
-      "youTubeUrl": "https://www.youtube.com/watch?v=7Ky6ZaodBkU",
-      "href": "https://google.pl",
-      "subText": "INDIAN SAMMER",
-      "date": "03.04.2015",
-      "auditions": {
-        "count": 22
-      },
-      "likes": {
-        "count": 43
-      },
-      "shares": {
-        "count": 34
-      },
-      "comments": {
-        "count": 34
-      }
+      "header": "Radioactive22",
+      "href": "https://www.youtube.com/watch?v=ktvTqknDobU",
+      "date": "12.08.2019",
+      "youTubeUrl": "https://www.youtube.com/watch?v=ktvTqknDobU",
+      "subText": "asdasd",
+      "id": 1
     },
     {
-      "type": "compositions",
-      "header": "dsada",
-      "href": "https://youtu.be/7Ky6ZaodBkU",
+      "header": "Testoactive",
+      "href": "https://www.youtube.com/watch?v=ktvTqknDobU",
       "date": "14.08.2019",
-      "youTubeUrl": "https://youtu.be/7Ky6ZaodBkU",
-      "subText": "asd",
-      "text": "asd",
+      "youTubeUrl": "https://www.youtube.com/watch?v=ktvTqknDobU",
+      "subText": "asdasd",
+      "text": "asdad",
       "id": 2
     },
     {
-      "type": "compositions",
-      "header": "sfsad",
-      "href": "https://youtu.be/7Ky6ZaodBkU",
-      "date": "22.08.2019",
-      "youTubeUrl": "https://youtu.be/7Ky6ZaodBkU",
+      "header": "dsadsa",
+      "href": "https://youtu.be/ktvTqknDobU",
+      "date": "21.08.2019",
+      "youTubeUrl": "https://youtu.be/ktvTqknDobU",
       "subText": "asdas",
-      "text": "sad",
+      "text": "dasd",
       "id": 3
     },
     {
-      "type": "compositions",
-      "href": "https://youtu.be/7Ky6ZaodBkU",
-      "header": "11111111111",
-      "date": "14.08.2019",
-      "youTubeUrl": "https://youtu.be/7Ky6ZaodBkU",
-      "subText": "1111",
-      "text": "111",
+      "header": "sadasd123123",
+      "href": "https://youtu.be/ktvTqknDobU",
+      "date": "21.08.2019",
+      "youTubeUrl": "https://youtu.be/ktvTqknDobU",
+      "subText": "asdasd",
+      "text": "123123",
       "id": 4
     }
   ],

@@ -1,6 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./Button.module.scss";
+// Modules
+import PropTypes from 'prop-types';
+
+// Utilities
+import styles from './Button.module.scss';
 
 const Button = ({
   children,
@@ -12,7 +16,6 @@ const Button = ({
   fixed,
   ...props
 }) => {
-
   let className;
   switch (buttonClass) {
     case 'secondary':
@@ -33,30 +36,44 @@ const Button = ({
   }
 
   const textClass = invertTextColor ? styles.invertText : styles.text;
-
   return (
     <React.Fragment>
       {href ? (
-        <a
-          href={href}
-          target="_blank"
-          className={className}
-          rel="noopener noreferrer"
-        >
+        <a href={href} target="_blank" className={className} rel="noopener noreferrer">
           {children}
         </a>
       ) : (
-          <button
-            onClick={openModalFn}
-            style={buttonBg ? { backgroundImage: `url(${buttonBg})` } : null}
-            className={className}
-            {...props}
-          >
-            <span className={textClass}>{children}</span>
-          </button>
-        )}
+        <button
+          onClick={openModalFn}
+          style={buttonBg ? { backgroundImage: `url(${buttonBg})` } : null}
+          className={className}
+          {...props}
+        >
+          <span className={textClass}>{children}</span>
+        </button>
+      )}
     </React.Fragment>
   );
+};
+
+Button.defaultProps = {
+  children: '',
+  href: '',
+  buttonClass: '',
+  buttonBg: '',
+  invertTextColor: false,
+  openModalFn: () => {},
+  fixed: false,
+};
+
+Button.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  href: PropTypes.string,
+  buttonClass: PropTypes.string,
+  buttonBg: PropTypes.string,
+  invertTextColor: PropTypes.bool,
+  openModalFn: PropTypes.func,
+  fixed: PropTypes.bool,
 };
 
 export default Button;

@@ -1,19 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import HeaderNavigation from "./HeaderNavigation";
+// Modules
+import HeaderNavigation from './HeaderNavigation';
 
-import styles from "./Header.module.scss";
+// Utilities
+import styles from './Header.module.scss';
 
-import headerBg from "../../assets/images/header-bg.png";
-import logo from "../../assets/images/header-logo.png";
+// Components
+import headerBg from '../../assets/images/header-bg.png';
+import logo from '../../assets/images/header-logo.png';
 
 const Header = () => {
   return (
-    <header
-      id="about"
-      style={{ backgroundImage: `url(${headerBg})` }}
-      className={styles.wrapper}
-    >
+    <header id="about" style={{ backgroundImage: `url(${headerBg})` }} className={styles.wrapper}>
       <HeaderNavigation />
       <div className={styles.logoWrapper}>
         <img className={styles.logo} src={logo} alt="Logo" />
