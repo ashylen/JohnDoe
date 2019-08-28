@@ -1,57 +1,47 @@
-import React from "react";
+import React from 'react';
 
-//Modules
+// Modules
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-//Components
-import WizardFormFirstStep from "./WizardFormFirstStep";
-import WizardFormSecondStep from "./WizardFormSecondStep";
+// Components
+import WizardFormFirstStep from './WizardFormFirstStep';
+import WizardFormSecondStep from './WizardFormSecondStep';
 
-//Utilities
-import styles from "./WizardForm.module.scss";
-import { GetStringFromDateObject } from "../../utilities/Functions";
-import {
-  addItem as addItemAction,
-} from '../../actions';
+// Utilities
+import styles from './WizardForm.module.scss';
+import { GetStringFromDateObject } from '../../utilities/Functions';
+import { addItem as addItemAction, editItem as editItemAction } from '../../actions';
 
 class WizardForm extends React.Component {
-
   state = { step: 1 };
 
-  nextStep = (values) => {
-    this.setState({ step: this.state.step + 1 });
-  }
+  nextStep = () => {
+    this.setState(prevState => ({
+      step: prevState.step + 1,
+    }));
+  };
 
   previousStep = () => {
-    this.setState({ step: this.state.step - 1 });
-  }
+    this.setState(prevState => ({
+      step: prevState.step - 1,
+    }));
+  };
 
-  handleSubmit = (formData) => {
-    formData.date = GetStringFromDateObject(formData.date);
+  handleSubmit = formData => {
+    formData.date = GetStringFromDateObject(formData.date); // TO ASK - czy można tak mutować parametry?
 
-    const { addItem } = this.props;
+    const { addItem, editItem, mainReducer, closeModalFn } = this.props;
+    const { isEditMode, idCurrentItem } = mainReducer;
 
-    const submit = async () => {
-      await addItem("compositions", formData);
-      await console.log('done');
-      await this.props.closeModalFn();
-    };
-
-    submit();
-
-    // console.log("props", this.props);
-    // console.log("state", this.state);
-
-    // axios
-    //   .post(`http://localhost:3000/compositions`, {
-    //     ...formData,
-    //   })
-    //   .then(({ data }) => {
-    //     this.props.closeModalFn();
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    (async () => {
+      if (isEditMode) {
+        await editItem('compositions', idCurrentItem, formData);
+      } else {
+        await addItem('compositions', formData);
+      }
+      await closeModalFn();
+    })();
   };
 
   render() {
@@ -62,32 +52,39 @@ class WizardForm extends React.Component {
     return (
       <React.Fragment>
         <div className={styles.wrapper}>
-          {step === 1 && (
-            <WizardFormFirstStep 
-            isEditMode={isEditMode} 
-            onSubmit={this.nextStep} />
-          )}
+          {step === 1 && <WizardFormFirstStep isEditMode={isEditMode} onSubmit={this.nextStep} />}
           {step === 2 && (
-            <WizardFormSecondStep
-              isEditMode={isEditMode}
-              previousStep={this.previousStep}
-              onSubmit={this.handleSubmit}
-            />
+            <WizardFormSecondStep previousStep={this.previousStep} onSubmit={this.handleSubmit} />
           )}
         </div>
       </React.Fragment>
     );
   }
+}
+
+WizardForm.defaultProps = {
+  mainReducer: {
+    idCurrentItem: null,
+  },
 };
 
-const mapStateToProps = (state) => {
-  return state;
+WizardForm.propTypes = {
+  addItem: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
+  closeModalFn: PropTypes.func.isRequired,
+  mainReducer: PropTypes.shape({
+    isEditMode: PropTypes.bool.isRequired,
+    idCurrentItem: PropTypes.number,
+  }),
 };
+
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
-  addItem: (itemType, itemContent) => dispatch(addItemAction(itemType, itemContent))
+  addItem: (itemType, itemContent) => dispatch(addItemAction(itemType, itemContent)),
+  editItem: (itemType, itemId, itemContent) =>
+    dispatch(editItemAction(itemType, itemId, itemContent)),
 });
-
 
 export default connect(
   mapStateToProps,

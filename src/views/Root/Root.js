@@ -10,8 +10,8 @@ import "./index.css";
 
 //Components
 import Header from "../../components/Header/Header";
-// import DiscographyView from "../DiscographyView/DiscographyView";
-// import ToursView from "../ToursView/ToursView";
+import DiscographyView from "../DiscographyView/DiscographyView";
+import ToursView from "../ToursView/ToursView";
 import LatterCompositionsView from "../LatterCompositionsView/LatterCompositionsView";
 
 class Root extends React.Component {
@@ -23,8 +23,8 @@ class Root extends React.Component {
         <Provider store={store}>
           <Header/>
           <section>
-            {/* <DiscographyView/> */}
-            {/* <ToursView/> */}
+            <DiscographyView/>
+            <ToursView/>
             <LatterCompositionsView/>
           </section>
         </Provider>
