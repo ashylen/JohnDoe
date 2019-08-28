@@ -1,6 +1,5 @@
 @import url("../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css");
-$mobile-sm: 468px;
-$mobile-lg: 1023px;
+@import '../../utilities/variables.module.scss';
 
 @keyframes fadeIn {
   0% {

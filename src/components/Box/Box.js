@@ -22,7 +22,7 @@ const Box = ({
       <div className={styles.additionalContent}>
         <Button
           href={buttonHref}
-          secondary={buttonClass === "secondary" ? true : false}
+          buttonClass = { buttonClass }
           buttonBg={buttonBg}
           invertTextColor={invertTextColor}
         >

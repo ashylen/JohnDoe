@@ -1,70 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+//Modules
 import { Field, reduxForm } from 'redux-form';
-import validate from './validate';
-import Input from '../Input/Input';
-import Button from '../Button/Button';
+
+//Utilities
 import styles from './WizardForm.module.scss';
+import validate from './Validators/validate';
+
+//Components
+import Button from '../Button/Button';
+import CustomInput from './CustomTextFields/CustomInput';
+import CustomTextarea from './CustomTextFields/CustomTextarea';
+import CustomDatepicker from './CustomTextFields/CustomDatepicker';
 
 const WizardFormFirstStep = props => {
-
-    const { handleSubmit } = props;
-
-    const required = value => value ? undefined : 'Required'
-
-    const CustomTextField = props => {
-        const { input, label, type, meta: { touched, error }, ...other } = props;
-        return (
-            <div>
-                <div>
-                    <Input
-                        label={label}
-                        placeholder={" "}
-                        type={type}
-                        error={touched && error && {error}}
-                        {...input}
-                    />
-                </div>
-            </div>
-        );
-    }
-    const CustomTextArea = props => {
-        const { input, label, type, meta: { touched, error }, ...other } = props;
-        return (
-            <div>
-                <div>
-                    <Input
-                        tag={"textarea"}
-                        label={label}
-                        placeholder={" "}
-                        type={type}
-                        error={touched && error && {error}}
-                        {...input}
-                    />
-                </div>
-            </div>
-        );
-    }
+    const { handleSubmit, isEditMode } = props;
 
     return (
         <React.Fragment>
-            <div className={styles.formHeader}>Add a new composition</div>
+            <div className={styles.formHeader}>{isEditMode? "Edit" : "Add a new"} composition</div>
             <form onSubmit={handleSubmit} className={styles.form}>
-                <Field name="header" component={CustomTextField} type="text" validate = {required} label="Composition name" />
-                <Field name="href" component={CustomTextField} type="text" validate = {required} label="Link" />
-                <Field name="date" component={CustomTextField} type="text" validate = {required} label="Date" />
-                <Field name="videoId" component={CustomTextField} type="text" validate = {required} label="Youtube URL" />
-                <Field name="subText" component={CustomTextField} type="text" validate = {required} label="Additional text" />
-                <Field name="text" component={CustomTextArea} type="text" validate = {required} label="Text" />
-                <Button type="submit">Next</Button>
+                <Field name="header" component={CustomInput} type="text" label="Composition name" />
+                <Field name="href" component={CustomInput} type="text" label="Link" />
+                <Field name="date" component={CustomDatepicker} type="text" label="Date" />
+                <Field name="youTubeUrl" component={CustomInput} type="text" label="Youtube URL" />
+                <Field name="subText" component={CustomInput} type="text" label="Additional text" />
+                <Field name="text" component={CustomTextarea} type="text" label="Text" />
+                <div className={styles.modalNavigation}>
+                    <Button type="submit">Next</Button>
+                </div>
             </form>
         </React.Fragment>
-
-    )
+    );
 }
 
 export default reduxForm({
-    form: 'addNewCompositionForm', // <------ same form name
-    destroyOnUnmount: false, // <------ preserve form data
-    forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
-    validate
-})(WizardFormFirstStep)
+    form: 'addNewCompositionForm',
+    validate,
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: true,
+})(WizardFormFirstStep);

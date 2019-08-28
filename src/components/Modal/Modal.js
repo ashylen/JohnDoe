@@ -8,7 +8,7 @@ const Modal = ({ closeModalFn }) => (
   <React.Fragment>
     <div className={styles.wrapper}>
       <button className={styles.closeButton} onClick={closeModalFn} />
-      <WizardForm />
+      <WizardForm closeModalFn = {closeModalFn}/>
     </div>
     <div onClick={closeModalFn} className={styles.overlay}></div>
   </React.Fragment>

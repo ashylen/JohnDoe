@@ -16,12 +16,21 @@ export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 
+export const OPEN_COMPOSITIONS_MODAL = 'OPEN_COMPOSITIONS_MODAL';
+export const CLOSE_COMPOSITIONS_MODAL = 'CLOSE_COMPOSITIONS_MODAL';
 
+
+export function openCompositionsModal( isEditMode ){
+  return { type: OPEN_COMPOSITIONS_MODAL, isCompositionsModalOpen : true, isEditMode: isEditMode}
+};
+
+export function closeCompositionsModal(){
+  return { type: CLOSE_COMPOSITIONS_MODAL, isCompositionsModalOpen : false, isEditMode: false}
+};
 
 export const fetchItems = itemType => (dispatch, getState) => {
   dispatch({ type: FETCH_REQUEST });
  
-
   return axios
     .get(`http://localhost:3000/${itemType}`)
     .then(({ data }) => {
@@ -34,7 +43,6 @@ export const fetchItems = itemType => (dispatch, getState) => {
       });
     })
     .catch(() => {
-      // console.log(err);
       dispatch({ type: FETCH_FAILURE });
     });
 };
@@ -54,21 +62,18 @@ export const removeItem = (itemType, id) => dispatch => {
       });
     })
     .catch(() => {
-      // console.log(err);
       dispatch({ type: REMOVE_ITEM_FAILURE });
     });
 };
 
 export const addItem = (itemType, itemContent) => (dispatch, getState) => {
   dispatch({ type: ADD_ITEM_REQUEST });
-  console.log(itemContent);
   return axios
     .post(`http://localhost:3000/${itemType}`, {
       type: itemType,
       ...itemContent,
     })
     .then(({ data }) => {
-      // console.log(data);
       dispatch({
         type: ADD_ITEM_SUCCESS,
         payload: {
@@ -78,7 +83,6 @@ export const addItem = (itemType, itemContent) => (dispatch, getState) => {
       });
     })
     .catch(() => {
-      // console.log(err);
       dispatch({ type: ADD_ITEM_FAILURE });
     });
 };

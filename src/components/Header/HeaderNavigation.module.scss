@@ -1,6 +1,4 @@
-$black: #000;
-$mobile-lg: 1024px;
-$mobile-xlg: 1250px;
+@import '../../utilities/variables.module.scss';
 
 @keyframes slideIn {
   0% {

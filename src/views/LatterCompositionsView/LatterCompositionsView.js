@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { Component } from 'react';
 
 // Modules
 import { connect } from 'react-redux';
@@ -7,11 +7,16 @@ import axios from 'axios';
 import YouTube from "react-youtube";
 
 // Utilities
-import { fetchItems, addItem as addItemAction } from '../../actions';
+import {
+  fetchItems,
+  openCompositionsModal as openCompositionsModalAction,
+  closeCompositionsModal as closeCompositionsModalAction
+} from '../../actions';
 import styles from "./LatterCompositionsView.module.scss";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import json from "../../data/latter-compositions.json";
+import { GetYouTubeVideoId } from '../../utilities/Functions';
 
 // Components
 import Box from "../../components/Box/Box";
@@ -26,63 +31,29 @@ class LatterCompositionsView extends Component {
   componentDidMount() {
     const { fetchCompositions } = this.props;
     fetchCompositions();
-  }
-
-  state = {
-    isModalOpen: false,
-  };
-
-  // addItemToView = (e, newItem) => {
-  //   if (newItem.videoId) {
-  //     //Get VideoId from Youtube URL
-  //     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-  //     var match = newItem.videoId.match(regExp);
-  //     let result = match && match[7].length === 11 ? match[7] : "";
-  //     newItem.videoId = result;
-  //   }
-
-  //   this.setState(prevState => ({
-  //     compositions: [...prevState["compositions"], newItem]
-  //   }));
-
-  //   this.setState({
-  //     step: 1
-  //   });
-
-  //   this.closeModal();
-  // };
-
-  openModal = () => {
-    this.setState({
-      isModalOpen: true
-    });
-  };
-
-  closeModal = () => {
-    this.setState({
-      isModalOpen: false,
-    });
   };
 
   render() {
 
-    const { isModalOpen } = this.state;
-    const { mainReducer, addItem } = this.props;
-    const { compositions } = mainReducer;
+    const { mainReducer, openCompositionsModal, closeCompositionsModal } = this.props;
+    const { compositions, isCompositionsModalOpen } = mainReducer;
 
     return (
       <React.Fragment>
-        {isModalOpen ? <Modal closeModalFn={this.closeModal} /> : null}
+        {isCompositionsModalOpen ? <Modal closeModalFn={closeCompositionsModal} /> : null}
         <article id="latter-compositions" className={styles.article}>
           <div className={styles.wrapper}>
             <SectionTitle>Latter Compositions </SectionTitle>
-            <SectionDescription>{json.sectionDescription}</SectionDescription>
+            <SectionDescription>"It's Time" was released as the lead single from Continued Silence and It's Time, both extended plays preceding Night Visions' release.</SectionDescription>
+
             {compositions ? compositions.map((item) => (
               <div className={styles.inner} key={item.id}>
                 <div className={styles.description}>
+
                   <TimelineHeader secondary={true} date={item.date}>
                     {item.subText}
                   </TimelineHeader>
+
                   <Box
                     header={item.header}
                     text={item.text}
@@ -90,13 +61,21 @@ class LatterCompositionsView extends Component {
                     buttonHref={item.href}
                     socialBoxContent={item}
                   />
-                </div>
-                <div className={styles.video}>
+
+                  <Button buttonClass="absoluteTL" openModalFn={() =>{openCompositionsModal(true)}}>
+                    Edit Track
+                  </Button>
 
                 </div>
+
+                <div className={styles.video}>
+                  {item.youTubeUrl && <YouTube videoId={GetYouTubeVideoId(item.youTubeUrl)} />}
+                </div>
+                
               </div>
             )) : null}
-            <Button fixed openModalFn={this.openModal}>
+
+            <Button buttonClass="buttonFixed" openModalFn={() =>{openCompositionsModal(false)}}>
               <FontAwesomeIcon icon={faPlus} color="#abacac" size="1x" />
             </Button>
           </div>
@@ -104,32 +83,21 @@ class LatterCompositionsView extends Component {
       </React.Fragment>
     );
   };
-  // {item.videoId && <YouTube videoId={item.videoId} />}
 };
 
-// LatterCompositionsView.defaultProps = {
-//   notes: [],
-// };
 
 LatterCompositionsView.propTypes = {
   fetchCompositions: PropTypes.func.isRequired,
-  addItem: PropTypes.func.isRequired,
-  // notes: PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     _id: PropTypes.string.isRequired,
-  //     title: PropTypes.string.isRequired,
-  //     content: PropTypes.string.isRequired,
-  //   }),
-  // ),
 };
 
-const mapStateToProps = (state) => { 
+const mapStateToProps = (state) => {
   return state;
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchCompositions: () => dispatch(fetchItems('compositions')),
-  addItem: (itemType, itemContent) => dispatch(addItemAction(itemType, itemContent)),
+  openCompositionsModal: (isEditMode) => dispatch(openCompositionsModalAction(isEditMode)),
+  closeCompositionsModal: () => dispatch(closeCompositionsModalAction()),
 });
 
 export default connect(

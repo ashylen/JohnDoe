@@ -1,7 +1,5 @@
 import React from "react";
 
-import Datepicker from "react-datepicker";
-import format from "date-fns/format";
 import { Field, reduxForm } from 'redux-form'
 
 import Input from "../Input/Input";
@@ -25,42 +23,42 @@ const initialState = {
 class Form extends React.Component {
   state = initialState;
 
-  handleDateChange = dateObject => {
-    if (dateObject) {
-      let formattedDate = format(dateObject, "dd.MM.yyyy", {
-        awareOfUnicodeTokens: true
-      });
+  // handleDateChange = dateObject => {
+  //   if (dateObject) {
+  //     let formattedDate = format(dateObject, "dd.MM.yyyy", {
+  //       awareOfUnicodeTokens: true
+  //     });
 
-      this.setState({
-        date: formattedDate,
-        dateObjectHelper: dateObject
-      });
-    }
-  };
+  //     this.setState({
+  //       date: formattedDate,
+  //       dateObjectHelper: dateObject
+  //     });
+  //   }
+  // };
 
-  handleInputChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  // handleInputChange = e => {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   });
 
-    if (e.target.name === "videoId") {
-      //Pasted link validation
-      var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-      var match = e.target.value.match(regExp);
-      let result;
-      if (match && match[7].length === 11) {
-        result = match;
-        this.setState({
-          videoId: result[0]
-        });
-      } else {
-        result = "You have to paste valid URL";
-        this.setState({
-          videoId: result
-        });
-      }
-    }
-  };
+  //   if (e.target.name === "videoId") {
+  //     //Pasted link validation
+  //     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+  //     var match = e.target.value.match(regExp);
+  //     let result;
+  //     if (match && match[7].length === 11) {
+  //       result = match;
+  //       this.setState({
+  //         videoId: result[0]
+  //       });
+  //     } else {
+  //       result = "You have to paste valid URL";
+  //       this.setState({
+  //         videoId: result
+  //       });
+  //     }
+  //   }
+  // };
 
 
 

@@ -1,64 +1,53 @@
 import React from 'react';
+
+//Modules
 import { connect } from 'react-redux';
 import { reduxForm, formValueSelector } from 'redux-form';
-import validate from './validate';
 
+//Utilities
+import styles from "./WizardForm.module.scss";
 
+//Components
 import SummaryList from '../SummaryList/SummaryList';
 import Button from '../Button/Button';
 
-import styles from "./WizardForm.module.scss";
-
-
 let WizardFormSecondStep = props => {
-  const { handleSubmit, pristine, previousStep, submitting } = props; //Misc
-  const { header, href, date, subText, videoId, text } = props; //Fields
-
-  console.log(props);
+  const { handleSubmit, previousStep, submitting } = props; //Misc
+  const { header, href, date, subText, youTubeUrl, text } = props; //Fields
 
   return (
     <React.Fragment>
       <div className={styles.formHeader}>Summary</div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <div>
-          <div className={styles.wrapper}>
-            <div className={styles.form}>
-              <div className={styles.modalNavigation}>
-                <SummaryList data={{header, href, date, subText, videoId, text}} />
-              </div>
-            </div>
-          </div>
-        </div>
+        <SummaryList data={{ header, href, date, subText, youTubeUrl, text }} />
         <div className={styles.modalNavigation}>
-          <Button secondary type="button" onClick={previousStep}>
+          <Button buttonClass="secondary" type="button" onClick={previousStep}>
             Previous
-        </Button>
-          <Button type="submit" disabled={pristine || submitting}>
+          </Button>
+          <Button type="submit" disabled={submitting}>
             Submit
-        </Button>
+          </Button>
         </div>
       </form>
     </React.Fragment>
-
   );
 };
 
 
 WizardFormSecondStep = reduxForm({
-  form: 'addNewCompositionForm', //Form name is same
+  form: 'addNewCompositionForm',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
-  validate
+  forceUnregisterOnUnmount: true,
 })(WizardFormSecondStep);
 
-const selector = formValueSelector('addNewCompositionForm');
+const selector = formValueSelector('addNewCompositionForm'); //Get values from Step1 form to Step2
 
 WizardFormSecondStep = connect(state => ({
   header: selector(state, 'header'),
   href: selector(state, 'href'),
   date: selector(state, 'date'),
   subText: selector(state, 'subText'),
-  videoId: selector(state, 'videoId'),
+  youTubeUrl: selector(state, 'youTubeUrl'),
   text: selector(state, 'text'),
 }))(WizardFormSecondStep);
 
