@@ -5,20 +5,33 @@ import styles from "./Button.module.scss";
 const Button = ({
   children,
   href,
-  secondary,
+  buttonClass,
   buttonBg,
   invertTextColor,
   openModalFn,
   fixed,
   ...props
 }) => {
-  const buttonClass = secondary
-    ? fixed
-      ? styles.secondaryFixed
-      : styles.secondary
-    : fixed
-    ? styles.buttonFixed
-    : styles.button;
+
+  let className;
+  switch (buttonClass) {
+    case 'secondary':
+      className = styles.secondary;
+      break;
+    case 'secondaryFixed':
+      className = styles.secondaryFixed;
+      break;
+    case 'buttonFixed':
+      className = styles.buttonFixed;
+      break;
+    case 'absoluteTL':
+      className = styles.absoluteTopLeft;
+      break;
+    default:
+      className = styles.button;
+      break;
+  }
+
   const textClass = invertTextColor ? styles.invertText : styles.text;
 
   return (
@@ -27,21 +40,21 @@ const Button = ({
         <a
           href={href}
           target="_blank"
-          className={buttonClass}
+          className={className}
           rel="noopener noreferrer"
         >
           {children}
         </a>
       ) : (
-        <button
-          onClick={openModalFn}
-          style={buttonBg ? { backgroundImage: `url(${buttonBg})` } : null}
-          className={buttonClass}
-          {...props}
-        >
-          <span className={textClass}>{children}</span>
-        </button>
-      )}
+          <button
+            onClick={openModalFn}
+            style={buttonBg ? { backgroundImage: `url(${buttonBg})` } : null}
+            className={className}
+            {...props}
+          >
+            <span className={textClass}>{children}</span>
+          </button>
+        )}
     </React.Fragment>
   );
 };

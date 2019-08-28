@@ -1,6 +1,4 @@
-$mobile-md: 768px;
-$mobile-lg: 1023px;
-$mobile-xxlg: 1400px;
+@import '../../utilities/variables.module.scss';
 
 .article {
   background-position: center bottom;

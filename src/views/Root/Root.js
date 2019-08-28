@@ -23,6 +23,8 @@ class Root extends React.Component {
         <Provider store={store}>
           <Header/>
           <section>
+            {/* <DiscographyView/> */}
+            {/* <ToursView/> */}
             <LatterCompositionsView/>
           </section>
         </Provider>

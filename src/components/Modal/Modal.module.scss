@@ -1,5 +1,4 @@
-$mobile-md: 768px;
-$mobile-lg: 1023px;
+@import '../../utilities/variables.module.scss';
 
 @keyframes fadeSlideIn {
   0% {

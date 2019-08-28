@@ -1,5 +1,6 @@
 import React from "react";
 
+//Modules
 import styles from "./SocialBox.module.scss";
 import {
   faVolumeDown,
@@ -7,18 +8,20 @@ import {
   faShareSquare,
   faCommentAlt
 } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
+
+//Components
 import SocialBoxItem from "../SocialBox/SocialBoxItem";
 
 const SocialBox = ({socialBoxContent}) => {
   const { auditions, likes, comments, shares } = socialBoxContent;
-
   const items = (
     <React.Fragment>
-      <SocialBoxItem icon={faVolumeDown} count={auditions.count} />
-      <SocialBoxItem icon={faHeart} count={likes.count} />
-      <SocialBoxItem icon={faShareSquare} count={comments.count} />
-      <SocialBoxItem icon={faCommentAlt} count={shares.count} />
+      <SocialBoxItem icon={faVolumeDown} count={auditions ? auditions.count : 0} />
+      <SocialBoxItem icon={faHeart} count={likes ? likes.count : 0} />
+      <SocialBoxItem icon={faShareSquare} count={comments ? comments.count : 0} />
+      <SocialBoxItem icon={faCommentAlt} count={shares ? shares.count : 0} />
     </React.Fragment>
   );
 
@@ -27,6 +30,21 @@ const SocialBox = ({socialBoxContent}) => {
       <div className={styles.wrapper}>{items}</div>
     </React.Fragment>
   );
+};
+
+
+SocialBoxItem.propTypes = {
+  auditions: PropTypes.shape({count: PropTypes.number}),
+  likes: PropTypes.shape({count: PropTypes.number}),
+  comments: PropTypes.shape({count: PropTypes.number}),
+  shares: PropTypes.shape({count: PropTypes.number})
+};
+
+SocialBoxItem.defaultProps = {
+  auditions: {count: 0},
+  likes: {count: 0},
+  comments: {count: 0},
+  shares: {count: 0},
 };
 
 export default SocialBox;
