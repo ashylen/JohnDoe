@@ -19,14 +19,14 @@ export const CLOSE_COMPOSITIONS_MODAL = 'CLOSE_COMPOSITIONS_MODAL';
 
 
 export function openCompositionsModal(isEditMode, idCurrentItem) {
-  return { type: OPEN_COMPOSITIONS_MODAL, isCompositionsModalOpen: true, isEditMode: isEditMode, idCurrentItem: idCurrentItem }
+  return { type: OPEN_COMPOSITIONS_MODAL, isCompositionsModalOpen: true, isEditMode, idCurrentItem }
 };
 
 export function closeCompositionsModal() {
   return { type: CLOSE_COMPOSITIONS_MODAL, isCompositionsModalOpen: false, isEditMode: false , idCurrentItem: null}
 };
 
-export const fetchItems = itemType => (dispatch, getState) => {
+export const fetchItems = itemType => (dispatch) => {
   dispatch({ type: FETCH_REQUEST });
 
   return axios
@@ -46,7 +46,7 @@ export const fetchItems = itemType => (dispatch, getState) => {
     });
 };
 
-export const addItem = (itemType, itemContent) => (dispatch, getState) => {
+export const addItem = (itemType, itemContent) => (dispatch) => {
 
   dispatch({ type: ADD_ITEM_REQUEST });
 
@@ -68,7 +68,7 @@ export const addItem = (itemType, itemContent) => (dispatch, getState) => {
     });
 };
 
-export const editItem = (itemType, itemId, itemContent) => (dispatch, getState) => {
+export const editItem = (itemType, itemId, itemContent) => (dispatch) => {
 
   dispatch({ type: EDIT_ITEM_REQUEST });
 
