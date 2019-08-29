@@ -2,7 +2,7 @@
   "compositions": [
     {
       "text": "\"Radioactive\" is a song recorded by American rock band Imagine Dragons for their major-label debut EP Continued Silence and later on their debut studio album, Night Visions (2012), as the opening track. \"Radioactive\" was",
-      "header": "13",
+      "header": "15",
       "href": "https://www.youtube.com/watch?v=ktvTqknDobU",
       "date": "01.08.2019",
       "youTubeUrl": "https://www.youtube.com/watch?v=ktvTqknDobU",
@@ -17,16 +17,20 @@
       "subText": "asd",
       "text": "asd",
       "id": 2
+    },
+    {
+      "header": "sad",
+      "id": 3
     }
   ],
   "tours": [
     {
       "id": 1,
-      "sectionDescription": "Before the release of Night Visions, Imagine Dragons made appearances on American radio and television to promote their extended play, Continued Silence and debut single It's Time. The band performed \"It's Time\" on the July 16, 2012 airing of NBC late-night talk show The Tonight Show with Jay Leno\"",
-      "box1": {
-        "header": "2015 - present",
-        "text": "At Lollapalooza in Sao Paulo, Brazil, the last date on the Into the Night Tour, the band announced a rest, and complemented saying, \"This is our last show for a while, and had no better place to end this tour\".[51] The conclusion of the Into the Night Tour signaled the end of the Night Visions album cycle. Lead singer Dan Reynolds joked about the end of the Night Visions cycle, saying that \"We're always writing on the road, [so] that second album will come, unless we die.\nnext year. Hopefully we don't die and there will be a second album. I don't know when it will be, but it may come\""
-      }
+      "date": "14.08.2018",
+      "subText": "Smoke + Mirrors Tour",
+      "header": "2015 - present",
+      "href": "https://www.ebay.pl/",
+      "text": "At Lollapalooza in Sao Paulo, Brazil, the last date on the Into the Night Tour, the band announced a rest, and complemented saying, \"This is our last show for a while, and had no better place to end this tour\".[51] The conclusion of the Into the Night Tour signaled the end of the Night Visions album cycle. Lead singer Dan Reynolds joked about the end of the Night Visions cycle, saying that \"We're always writing on the road, [so] that second album will come, unless we die.\nnext year. Hopefully we don't die and there will be a second album. I don't know when it will be, but it may come\""
     }
   ],
   "discography": [
@@ -34,21 +38,21 @@
       "id": 1,
       "header": "Hell and Silence is an EP by Las Vegas rock group",
       "text": "Hell and Silence is an EP by Las Vegas rock group , released in March 2010 in the United States. It was recorded at Battle Born Studios. All songs were written by Imagine Dragons and self-produced. The EP was in part mixed by Grammy nominated engineer Mark Needham. To promote the album the band performed five shows at SXSW 2010 including at the BMI Official Showcase.While at SXSW they were endorsed by Blue Microphones. They also toured the western United States with Nico Vega and Saint Motel. They also performed at Bite of Las Vegas Festival 2010, New Noise Music Festival, Neon Reverb Festival, and Fork Fest.",
-      "albumName": "HELL AND SILENCE",
+      "subText": "HELL AND SILENCE",
       "year": "2015"
     },
     {
       "id": 2,
       "header": "Night Visions is the debut studio album by American rock band",
       "text": "It was released on September 4, 2012 through Interscope Records. The extended track was released on February 12, 2013, adding three more songs. Recorded between 2010 and 2012, the album was primarily produced by the band themselves, as well as English hip-hop producer Alex da Kid and Brandon Darner from the American indie rock group The Envy Corps. It was mastered by Joe LaPorta. According to frontman Dan Reynolds, the album took three years to finish of the album's tracks being previously released on multiple EPs. Musically, Night Visions exhibits influences of folk, hip hop and pop.",
-      "albumName": "NIGHT VISIONS",
+      "subText": "NIGHT VISIONS",
       "year": "2014"
     },
     {
       "id": 3,
       "header": "The album was recorded during 2014 at the band's home studio in Las Vegas, Nevada",
       "text": "Self-produced by members of the band along with English hip-hop producer Alexander Grant, known by his moniker Alex da Kid, the album was released by Interscope Records and Grant's KIDinaKORNER label on February 17, 2015, in the United States.",
-      "albumName": "SMOKE + MIRRORS",
+      "subText": "SMOKE + MIRRORS",
       "year": "2013"
     }
   ]

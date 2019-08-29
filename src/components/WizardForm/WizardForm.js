@@ -13,7 +13,7 @@ import WizardFormSecondStep from './WizardFormSecondStep';
 // Utilities
 import styles from './WizardForm.module.scss';
 import { GetStringFromDateObject } from '../../utilities/Functions/GetStringFromDateObject';
-import { addItem as addItemAction, editItem as editItemAction, fetchItems } from '../../actions';
+import { addItem as addItemAction, editItem as editItemAction, fetchCompositions as fetchCompositionsAction } from '../../actions/compositionActions';
 
 class WizardForm extends React.Component {
   state = { step: 1 };
@@ -84,7 +84,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchCompositions: () => dispatch(fetchItems('compositions')),
+  fetchCompositions: () => dispatch(fetchCompositionsAction('compositions')),
   addItem: (itemType, itemContent) => dispatch(addItemAction(itemType, itemContent)),
   reset: bindActionCreators(resetReduxForm, dispatch),
   editItem: (itemType, itemId, itemContent) =>

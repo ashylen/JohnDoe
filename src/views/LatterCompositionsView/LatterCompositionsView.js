@@ -10,9 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './LatterCompositionsView.module.scss';
-import { GetYouTubeVideoId } from '../../utilities/Functions/GetYouTubeVideoId';
 
-import { fetchItems } from '../../actions/compositionActions';
+import { GetYouTubeVideoId } from '../../utilities/Functions/GetYouTubeVideoId';
+import { fetchCompositions as fetchCompositionsAction } from '../../actions/compositionActions';
 import {
   openCompositionsModal as openCompositionsModalAction,
   closeCompositionsModal as closeCompositionsModalAction,
@@ -128,7 +128,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchCompositions: () => dispatch(fetchItems('compositions')),
+  fetchCompositions: () => dispatch(fetchCompositionsAction('compositions')),
   openCompositionsModal: (isEditMode, idCurrentItem) =>
     dispatch(openCompositionsModalAction(isEditMode, idCurrentItem)),
   closeCompositionsModal: () => dispatch(closeCompositionsModalAction()),
