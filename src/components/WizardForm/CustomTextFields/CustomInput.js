@@ -1,6 +1,6 @@
 import React from 'react';
 
-// TO ASK - przerobić mój input na ten?
+//  - przerobić mój input na ten? ma byc Reużywalny
 
 // Components
 import Input from '../../Input/Input';

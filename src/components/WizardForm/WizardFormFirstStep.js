@@ -53,7 +53,9 @@ WizardFormFirstStep = reduxForm({
 })(WizardFormFirstStep);
 
 const mapStateToProps = state => {
-  const { compositions, idCurrentItem } = state.mainReducer;
+  const { compositions} = state.compositionsReducer;
+  const { idCurrentItem } = state.modalReducer;
+
   return {
     initialValues: compositions.find(x => x.id === idCurrentItem),
   };
