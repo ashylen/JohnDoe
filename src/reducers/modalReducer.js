@@ -1,4 +1,4 @@
-import { OPEN_COMPOSITIONS_MODAL, CLOSE_COMPOSITIONS_MODAL } from '../actions';
+import { OPEN_COMPOSITIONS_MODAL, CLOSE_COMPOSITIONS_MODAL } from '../actions/modalActions';
 
 const initialState = {
   isCompositionsModalOpen: false,

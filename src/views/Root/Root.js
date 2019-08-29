@@ -11,7 +11,7 @@ import './index.css';
 // Components
 import Header from '../../components/Header/Header';
 import DiscographyView from '../DiscographyView/DiscographyView';
-// import ToursView from '../ToursView/ToursView';
+import ToursView from '../ToursView/ToursView';
 import LatterCompositionsView from '../LatterCompositionsView/LatterCompositionsView';
 
 const Root = () => {
@@ -21,7 +21,7 @@ const Root = () => {
         <Header />
         <section>
           <DiscographyView />
-          {/* <ToursView /> */}
+          <ToursView />
           <LatterCompositionsView />
         </section>
       </Provider>

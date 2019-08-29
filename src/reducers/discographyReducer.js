@@ -1,18 +1,18 @@
-import { FETCH_ITEMS_REQUEST, FETCH_ITEMS_SUCCESS } from '../actions/discographyActions';
+import { FETCH_DISCOGRAPHY_REQUEST, FETCH_DISCOGRAPHY_SUCCESS } from '../actions/discographyActions';
 
-const initialState = {};
+const initialState = {
+  discography:[]
+};
 
 const discographyReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ITEMS_REQUEST:
+    case FETCH_DISCOGRAPHY_REQUEST:
       return {
         ...state,
-        isLoading: true,
       };
-    case FETCH_ITEMS_SUCCESS:
+    case FETCH_DISCOGRAPHY_SUCCESS:
       return {
         ...state,
-        isLoading: false,
         [action.payload.itemType]: [...action.payload.data],
       };
     default:

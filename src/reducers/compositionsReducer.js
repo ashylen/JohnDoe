@@ -1,31 +1,31 @@
 import {
-  ADD_ITEM_SUCCESS,
-  EDIT_ITEM_SUCCESS,
-  FETCH_ITEMS_REQUEST,
-  FETCH_ITEMS_SUCCESS,
+  ADD_COMPOSITIONS_SUCCESS,
+  EDIT_COMPOSITIONS_SUCCESS,
+  FETCH_COMPOSITIONS_REQUEST,
+  FETCH_COMPOSITIONS_SUCCESS,
 } from '../actions/compositionActions';
 
-const initialState = {};
+const initialState = {
+  compositions:[]
+};
 
 const compositionsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ITEMS_REQUEST:
+    case FETCH_COMPOSITIONS_REQUEST:
       return {
         ...state,
-        isLoading: true,
       };
-    case FETCH_ITEMS_SUCCESS:
+    case FETCH_COMPOSITIONS_SUCCESS:
       return {
         ...state,
-        isLoading: false,
         [action.payload.itemType]: [...action.payload.data],
       };
-    case ADD_ITEM_SUCCESS:
+    case ADD_COMPOSITIONS_SUCCESS:
       return {
         ...state,
         [action.payload.itemType]: [...state[action.payload.itemType], action.payload.data],
       };
-    case EDIT_ITEM_SUCCESS:
+    case EDIT_COMPOSITIONS_SUCCESS:
     default:
       return state;
   }

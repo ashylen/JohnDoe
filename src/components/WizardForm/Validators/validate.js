@@ -1,5 +1,6 @@
 import { YOUTUBE_REGEXP } from '../../../constants/YouTubeRegExp';
 
+
 const validate = values => {
   const errors = {};
 
