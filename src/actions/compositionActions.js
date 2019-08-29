@@ -4,50 +4,35 @@ export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
 export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
 export const ADD_ITEM_FAILURE = 'ADD_ITEM_FAILURE';
 
-export const LOAD_EDIT_DATA = 'LOAD_EDIT_DATA';
-
 export const EDIT_ITEM_REQUEST = 'EDIT_ITEM_REQUEST';
 export const EDIT_ITEM_SUCCESS = 'EDIT_ITEM_SUCCESS';
 export const EDIT_ITEM_FAILURE = 'EDIT_ITEM_FAILURE';
 
-export const FETCH_REQUEST = 'FETCH_REQUEST';
-export const FETCH_SUCCESS = 'FETCH_SUCCESS';
-export const FETCH_FAILURE = 'FETCH_FAILURE';
+export const FETCH_ITEMS_REQUEST = 'FETCH_ITEMS_REQUEST';
+export const FETCH_ITEMS_SUCCESS = 'FETCH_ITEMS_SUCCESS';
+export const FETCH_ITEMS_FAILURE = 'FETCH_ITEMS_FAILURE';
 
-export const OPEN_COMPOSITIONS_MODAL = 'OPEN_COMPOSITIONS_MODAL';
-export const CLOSE_COMPOSITIONS_MODAL = 'CLOSE_COMPOSITIONS_MODAL';
-
-
-export function openCompositionsModal(isEditMode, idCurrentItem) {
-  return { type: OPEN_COMPOSITIONS_MODAL, isCompositionsModalOpen: true, isEditMode, idCurrentItem }
-};
-
-export function closeCompositionsModal() {
-  return { type: CLOSE_COMPOSITIONS_MODAL, isCompositionsModalOpen: false, isEditMode: false , idCurrentItem: null}
-};
-
-export const fetchItems = itemType => (dispatch) => {
-  dispatch({ type: FETCH_REQUEST });
+export const fetchItems = itemType => dispatch => {
+  dispatch({ type: FETCH_ITEMS_REQUEST });
 
   return axios
     .get(`http://localhost:3000/${itemType}`)
     .then(({ data }) => {
       dispatch({
-        type: FETCH_SUCCESS,
+        type: FETCH_ITEMS_SUCCESS,
         payload: {
           data,
           itemType,
         },
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.error(err);
-      dispatch({ type: FETCH_FAILURE });
+      dispatch({ type: FETCH_ITEMS_FAILURE });
     });
 };
 
-export const addItem = (itemType, itemContent) => (dispatch) => {
-
+export const addItem = (itemType, itemContent) => dispatch => {
   dispatch({ type: ADD_ITEM_REQUEST });
 
   return axios
@@ -59,7 +44,7 @@ export const addItem = (itemType, itemContent) => (dispatch) => {
         type: ADD_ITEM_SUCCESS,
         payload: {
           data,
-          itemType: itemType
+          itemType: itemType,
         },
       });
     })
@@ -68,8 +53,7 @@ export const addItem = (itemType, itemContent) => (dispatch) => {
     });
 };
 
-export const editItem = (itemType, itemId, itemContent) => (dispatch) => {
-
+export const editItem = (itemType, itemId, itemContent) => dispatch => {
   dispatch({ type: EDIT_ITEM_REQUEST });
 
   return axios
@@ -81,12 +65,12 @@ export const editItem = (itemType, itemId, itemContent) => (dispatch) => {
         type: EDIT_ITEM_SUCCESS,
         payload: {
           data,
-          itemType: itemType,
-          itemId: itemId
+          itemType,
+          itemId,
         },
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.error(err);
       dispatch({ type: EDIT_ITEM_FAILURE });
     });

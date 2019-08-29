@@ -9,7 +9,7 @@ import 'react-day-picker/lib/style.css';
 
 // Utilities
 import styles from './CustomDatepicker.module.scss';
-import { DATE_FORMAT } from '../../../utilities/DateFormat';
+import { DATE_FORMAT } from '../../../constants/DateFormat';
 
 function parseDate(str, format, locale) {
   const parsed = dateFnsParse(str, format, { locale });

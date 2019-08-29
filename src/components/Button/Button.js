@@ -27,8 +27,8 @@ const Button = ({
     case 'buttonFixed':
       className = styles.buttonFixed;
       break;
-    case 'absoluteTL':
-      className = styles.absoluteTopLeft;
+    case 'absoluteTR':
+      className = styles.absoluteTopRight;
       break;
     default:
       className = styles.button;

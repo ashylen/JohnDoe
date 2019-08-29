@@ -1,3 +1,5 @@
+import { YOUTUBE_REGEXP } from '../../../constants/YouTubeRegExp';
+
 const validate = values => {
   const errors = {};
 
@@ -10,8 +12,7 @@ const validate = values => {
   }
 
   if (values.href) {
-    const URLregExp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
-    const regex = new RegExp(URLregExp);
+    const regex = new RegExp(YOUTUBE_REGEXP);
     if (!values.href.match(regex)) {
       errors.href = 'Incorrect URL format.';
     }
@@ -26,7 +27,7 @@ const validate = values => {
   }
 
   if (values.youTubeUrl) {
-    const regExp = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/;
+    const regExp = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-_]*)(&(amp;)?‌​[w?‌​=]*)?/;
     if (!values.youTubeUrl.match(regExp)) {
       errors.youTubeUrl = 'Incorrect YouToube URL format.';
     }

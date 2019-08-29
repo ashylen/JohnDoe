@@ -1,4 +1,4 @@
-@import '../../utilities/variables.module.scss';
+@import '../../utilities/CSS/variables.module.scss';
 
 @keyframes fadeSlideIn {
   0% {
@@ -118,4 +118,23 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
   animation: fadeIn 0.5s;
+}
+
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
 }

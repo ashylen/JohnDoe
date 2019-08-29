@@ -6,16 +6,17 @@ import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
 
 // Utilities
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import styles from './LatterCompositionsView.module.scss';
+import { GetYouTubeVideoId } from '../../utilities/Functions/GetYouTubeVideoId';
+
+import { fetchItems } from '../../actions/compositionActions';
 import {
-  fetchItems,
   openCompositionsModal as openCompositionsModalAction,
   closeCompositionsModal as closeCompositionsModalAction,
-} from '../../actions';
-import styles from './LatterCompositionsView.module.scss';
-import { GetYouTubeVideoId } from '../../utilities/Functions';
+} from '../../actions/modalActions';
 
 // Components
 import Box from '../../components/Box/Box';
@@ -32,8 +33,12 @@ class LatterCompositionsView extends Component {
   }
 
   render() {
-    const { mainReducer, openCompositionsModal, closeCompositionsModal } = this.props;
-    const { compositions, isCompositionsModalOpen } = mainReducer;
+    const {
+      compositions,
+      isCompositionsModalOpen,
+      openCompositionsModal,
+      closeCompositionsModal,
+    } = this.props;
 
     return (
       <React.Fragment>
@@ -62,7 +67,7 @@ class LatterCompositionsView extends Component {
                       />
 
                       <Button
-                        buttonClass="absoluteTL"
+                        buttonClass="absoluteTR"
                         openModalFn={() => {
                           openCompositionsModal(true, item.id);
                         }}
@@ -94,32 +99,33 @@ class LatterCompositionsView extends Component {
 }
 
 LatterCompositionsView.defaultProps = {
-  mainReducer: {
-    compositions: {},
-  },
+  compositions: [],
 };
 
 LatterCompositionsView.propTypes = {
   fetchCompositions: PropTypes.func.isRequired,
   openCompositionsModal: PropTypes.func.isRequired,
   closeCompositionsModal: PropTypes.func.isRequired,
-  mainReducer: PropTypes.shape({
-    isCompositionsModalOpen: PropTypes.bool.isRequired,
-    compositions: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired,
-        header: PropTypes.string.isRequired,
-        href: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        youTubeUrl: PropTypes.string.isRequired,
-        subText: PropTypes.string.isRequired,
-      }),
-    ),
-  }),
+  isCompositionsModalOpen: PropTypes.bool.isRequired,
+  compositions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      header: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      youTubeUrl: PropTypes.string.isRequired,
+      subText: PropTypes.string.isRequired,
+    }),
+  ),
 };
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  const { compositions } = state.compositionsReducer;
+  const { isCompositionsModalOpen } = state.modalReducer;
+
+  return { compositions, isCompositionsModalOpen };
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchCompositions: () => dispatch(fetchItems('compositions')),

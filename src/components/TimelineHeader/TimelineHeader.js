@@ -5,12 +5,12 @@ import React from 'react';
 
 // Utilities
 import styles from './TimelineHeader.module.scss';
-import { GetStringFromDateObject } from '../../utilities/Functions';
+import { GetStringFromDateObject } from '../../utilities/Functions/GetStringFromDateObject';
 
 const TimelineHeader = ({ date, children, secondary }) => {
   const wrapperClass = secondary ? styles.secondaryWrapper : styles.wrapper;
 
-  children = GetStringFromDateObject(children); //TO ASK - czy to jest ok?
+  children = GetStringFromDateObject(children); 
   
   return (
     <React.Fragment>

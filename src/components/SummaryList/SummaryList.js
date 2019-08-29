@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Modules
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // Utilities
 import styles from './SummaryList.module.scss';
