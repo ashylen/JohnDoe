@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Modules
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // Utilities
 import styles from './TimelineHeader.module.scss';
@@ -11,6 +11,7 @@ const TimelineHeader = ({ date, children, secondary }) => {
   const wrapperClass = secondary ? styles.secondaryWrapper : styles.wrapper;
 
   children = GetStringFromDateObject(children); //TO ASK - czy to jest ok?
+  
   return (
     <React.Fragment>
       <div className={wrapperClass}>
@@ -22,15 +23,15 @@ const TimelineHeader = ({ date, children, secondary }) => {
   );
 };
 
-TimelineHeader.defaultProps = {
-  secondary: false,
-  date: ''
-};
+// TimelineHeader.defaultProps = {
+//   secondary: false,
+//   date: ''
+// };
 
-TimelineHeader.propTypes = {
-  date: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  children: PropTypes.string.isRequired,
-  secondary: PropTypes.bool,
-};
+// TimelineHeader.propTypes = {
+//   date: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+//   children: PropTypes.string.isRequired,
+//   secondary: PropTypes.bool,
+// };
 
 export default TimelineHeader;

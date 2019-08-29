@@ -11,7 +11,6 @@ import TimelineHeader from '../TimelineHeader/TimelineHeader';
 
 const SummaryList = ( {data} ) => {
   const { header, href, date, subText, youTubeUrl, text } = data;
-    console.log(header);
   return (
     <React.Fragment>
       <div className={styles.wrapper}>

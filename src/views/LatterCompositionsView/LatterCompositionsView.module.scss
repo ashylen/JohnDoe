@@ -5,11 +5,13 @@ $description-color: #f5f6f6;
 @keyframes fadeSlideIn {
   0% {
     opacity: 0;
+    z-index: -1;
     transform: translate(0%, -40%);
   }
 
   100% {
     opacity: 1;
+    z-index: 0;
     transform: translate(0%, 0%);
   }
 }
@@ -51,11 +53,6 @@ hr {
       align-content: stretch;
       margin: 15px 0;
       animation: fadeSlideIn 1s;
-      z-index:1;
-
-      &:last-of-type{
-        z-index: 0;
-      }
 
       .video {
         iframe {

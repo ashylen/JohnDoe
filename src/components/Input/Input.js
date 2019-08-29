@@ -14,7 +14,7 @@ const Input = ({ tag: Tag, name, label, maxLength, error, ...props }) => {
         id={name}
         autoComplete="off"
         // required
-        // maxLength={maxLength}
+        maxLength={maxLength}
         placeholder=" "
         {...props}
       />

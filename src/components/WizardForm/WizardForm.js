@@ -32,7 +32,7 @@ class WizardForm extends React.Component {
     formData.date = GetStringFromDateObject(formData.date); // TO ASK - czy można tak mutować parametry?
 
     const { addItem, editItem, mainReducer, closeModalFn } = this.props;
-    const { isEditMode, idCurrentItem } = mainReducer;
+    const { isEditMode, idCurrentItem } = mainReducer; // TO ASK - czy można jakoś skrócić dostęp do tego mainReducera?  combineReducers to robi --> reducers.js
 
     (async () => {
       if (isEditMode) {
