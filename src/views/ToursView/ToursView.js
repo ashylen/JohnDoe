@@ -43,7 +43,7 @@ class ToursView extends Component {
             {tours
               ? tours.map(item => (
                   <div key={item.id} className={styles.track}>
-                    <TimelineHeader date={item.date}>{item.subText}</TimelineHeader>
+                    <TimelineHeader title={item.date}>{item.subText}</TimelineHeader>
                     <Box
                       header={item.header}
                       text={item.text}

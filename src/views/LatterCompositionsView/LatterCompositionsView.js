@@ -55,7 +55,7 @@ class LatterCompositionsView extends Component {
               ? compositions.map(item => (
                   <div className={styles.inner} key={item.id}>
                     <div className={styles.description}>
-                      <TimelineHeader secondary date={item.date}>
+                      <TimelineHeader secondary title={item.date}>
                         {item.subText}
                       </TimelineHeader>
                       <Box

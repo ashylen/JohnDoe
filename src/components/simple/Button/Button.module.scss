@@ -2,7 +2,6 @@
 @import '../../../utilities/CSS/Animations/slidingBg.modules.scss';
 @import '../../../utilities/CSS/Animations/pulse.modules.scss';
 
-
 $bg-color: #f5f6f6;
 
 .button {
@@ -93,7 +92,7 @@ $bg-color: #f5f6f6;
   }
 
   &:hover {
-    background-size: 100%;
+    background-size: 130%;
     border: 1px solid transparent;
   }
 

@@ -21,7 +21,7 @@ let WizardFormSecondStep = props => {
       <form onSubmit={handleSubmit} className={styles.form}>
         <SummaryList data={{ header, href, date, subText, youTubeUrl, text }} />
         <div className={styles.modalNavigation}>
-          <Button buttonClass="secondary" type="button" onClick={previousStep}>
+          <Button cssClass="secondary" type="button" onClick={previousStep}>
             Previous
           </Button>
           <Button type="submit" disabled={submitting}>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Modules
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 // Utilities
 import styles from './SummaryList.module.scss';
@@ -9,7 +9,7 @@ import styles from './SummaryList.module.scss';
 // Components
 import TimelineHeader from '../TimelineHeader/TimelineHeader';
 
-const SummaryList = ( {data} ) => {
+const SummaryList = ({ data }) => {
   const { header, href, date, subText, youTubeUrl, text } = data;
   return (
     <React.Fragment>
@@ -25,17 +25,26 @@ const SummaryList = ( {data} ) => {
   );
 };
 
-// SummaryList.propTypes = {
-//   data: PropTypes.objectOf(
-//     PropTypes.shape({
-//       header: PropTypes.string.isRequired,
-//       text: PropTypes.string.isRequired,
-//       href: PropTypes.string.isRequired,
-//       date: PropTypes.string.isRequired,
-//       youTubeUrl: PropTypes.string.isRequired,
-//       subText: PropTypes.string.isRequired,
-//     }),
-//   ).isRequired,
-// };
+SummaryList.defaultProps = {
+  data: {
+    header: "",
+    text: "",
+    href: "",
+    date: "",
+    youTubeUrl: "",
+    subText: "",
+  }
+};
+
+SummaryList.propTypes = {
+  data: PropTypes.shape({
+    header: PropTypes.string,
+    text: PropTypes.string,
+    href: PropTypes.string,
+    date: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+    youTubeUrl: PropTypes.string,
+    subText: PropTypes.string,
+  }),
+};
 
 export default SummaryList;

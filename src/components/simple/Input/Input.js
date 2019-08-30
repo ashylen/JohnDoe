@@ -4,7 +4,8 @@ import styles from './Input.module.scss';
 
 const Input = ({ tag: Tag, name, label, maxLength, error, ...props }) => {
   const formItemClass = error ? styles.formItemError : styles.formItem;
-
+  console.log(error);
+  console.log(typeof error);
   return (
     <div className={formItemClass}>
       <Tag
@@ -13,7 +14,6 @@ const Input = ({ tag: Tag, name, label, maxLength, error, ...props }) => {
         name={name}
         id={name}
         autoComplete="off"
-        // required
         maxLength={maxLength}
         placeholder=" "
         {...props}
@@ -27,11 +27,18 @@ const Input = ({ tag: Tag, name, label, maxLength, error, ...props }) => {
   );
 };
 
+Input.defaultProps = {
+  tag: "",
+  maxLength: "",
+  error: false,
+};
+
 Input.propTypes = {
   tag: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({error: PropTypes.string})])
 };
 
 Input.defaultProps = {

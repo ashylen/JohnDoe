@@ -45,14 +45,14 @@ class DiscographyView extends Component {
             {discography
               ? discography.map((item, key) => (
                   <div key={item.id} className={styles.track}>
-                    <TimelineHeader date={item.year}>{item.subText}</TimelineHeader>
+                    <TimelineHeader title={item.year}>{item.subText}</TimelineHeader>
                     <Box
                       header={item.header}
                       text={item.text}
                       buttonText="PLAY"
                       buttonBgImage={ButtonBackgrounds[key]}
                       buttonClass="secondary"
-                      invertTextColor
+                      invertTextColor={key === 0 || false }
                     />
                   </div>
                 ))
