@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 // Components
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
-import CustomTextarea from '../../simple/CustomInputs/CustomTextarea';
 import CustomDatepicker from '../../simple/CustomInputs/CustomDatepicker';
 
 // Utilities
@@ -18,6 +17,7 @@ import { maxLength } from '../../../utilities/Validators/maxLength';
 import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
 
 const maxLength15 = maxLength(15);
+const isRequired = required;
 
 let WizardFormFirstStep = props => {
   const { handleSubmit, isEditMode } = props;
@@ -28,38 +28,51 @@ let WizardFormFirstStep = props => {
       <form onSubmit={handleSubmit} className={styles.form}>
         <Field
           name="header"
+          placeholder=" "
           component={CustomInput}
           type="text"
-          validate={[required, maxLength15]}
+          validate={[isRequired, maxLength15]}
           label="Composition name"
         />
-        <Field name="href" component={CustomInput} type="text" validate={[required]} label="Link" />
+        <Field
+          name="href"
+          placeholder=" "
+          component={CustomInput}
+          type="text"
+          validate={[isRequired]}
+          label="Link"
+        />
         <Field
           name="date"
+          placeholder=" "
           component={CustomDatepicker}
           type="text"
-          validate={[required]}
+          validate={[isRequired]}
           label="Date"
         />
         <Field
           name="youTubeUrl"
+          placeholder=" "
           component={CustomInput}
           type="text"
-          validate={[required, isYouTubeUrl]}
+          validate={[isRequired, isYouTubeUrl]}
           label="Youtube URL"
         />
         <Field
           name="subText"
+          placeholder=" "
           component={CustomInput}
           type="text"
-          validate={[required]}
+          validate={[isRequired]}
           label="Additional text"
         />
         <Field
           name="text"
-          component={CustomTextarea}
+          placeholder=" "
+          component={CustomInput}
+          tag="textarea"
           type="text"
-          validate={[required]}
+          validate={[isRequired]}
           label="Text"
         />
         <div className={styles.modalNavigation}>
@@ -81,7 +94,6 @@ WizardFormFirstStep.propTypes = {
 
 WizardFormFirstStep = reduxForm({
   form: 'addNewCompositionForm',
-  // validate,
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
 })(WizardFormFirstStep);

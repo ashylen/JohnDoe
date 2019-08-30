@@ -19,6 +19,14 @@ class WizardForm extends React.Component {
   state = { step: 1 };
 
   // componentDidMount z servera pobrac initial values compositions
+  componentDidMount() {
+    const { idCurrentItem , isEditMode } = this.props;
+
+    if(isEditMode)
+    {
+      
+    }
+  };
 
   nextStep = () => {
     this.setState(prevState => ({

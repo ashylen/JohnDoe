@@ -1,7 +1,5 @@
 import React from 'react';
 
-//  - przerobić mój input na ten? ma byc Reużywalny
-
 // Components
 import Input from '../Input/Input';
 
@@ -10,14 +8,19 @@ const CustomInput = props => {
     input,
     label,
     type,
+    placeholder,
+    maxLength,
     meta: { touched, error },
+    tag: Tag,
   } = props;
 
+  const TagName = Tag || 'input';
   return (
     <Input
-      maxLength={200}
+      tag={TagName}
+      maxLength={maxLength}
       label={label}
-      placeholder=' '
+      placeholder={placeholder}
       type={type}
       error={touched && error && { error }}
       {...input}
