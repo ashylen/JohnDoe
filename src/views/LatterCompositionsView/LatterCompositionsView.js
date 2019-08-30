@@ -19,12 +19,12 @@ import {
 } from '../../actions/modalActions';
 
 // Components
-import Box from '../../components/Box/Box';
-import SectionTitle from '../../components/SectionTitle/SectionTitle';
-import SectionDescription from '../../components/SectionDescription/SectionDescription';
-import TimelineHeader from '../../components/TimelineHeader/TimelineHeader';
-import Button from '../../components/Button/Button';
-import Modal from '../../components/Modal/Modal';
+import Box from '../../components/complex/Box/Box';
+import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
+import SectionDescription from '../../components/complex/SectionDescription/SectionDescription';
+import TimelineHeader from '../../components/complex/TimelineHeader/TimelineHeader';
+import Button from '../../components/simple/Button/Button';
+import Modal from '../../components/complex/Modal/Modal';
 
 class LatterCompositionsView extends Component {
   componentDidMount() {
@@ -67,12 +67,12 @@ class LatterCompositionsView extends Component {
                       />
 
                       <Button
-                        buttonClass="absoluteTR"
-                        openModalFn={() => {
+                        cssClass="absoluteTR"
+                        onClick={() => {
                           openCompositionsModal(true, item.id);
                         }}
                       >
-                        Edit Track
+                        Edit
                       </Button>
                     </div>
 
@@ -84,8 +84,8 @@ class LatterCompositionsView extends Component {
               : null}
 
             <Button
-              buttonClass="buttonFixed"
-              openModalFn={() => {
+              cssClass="buttonFixed"
+              onClick={() => {
                 openCompositionsModal(false);
               }}
             >

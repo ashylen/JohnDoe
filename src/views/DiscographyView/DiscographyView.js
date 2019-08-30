@@ -12,10 +12,10 @@ import styles from './DiscographyView.module.scss';
 import { fetchDiscography as fetchDiscographyAction } from '../../actions/discographyActions';
 
 // Components
-import SectionTitle from '../../components/SectionTitle/SectionTitle';
-import SectionDescription from '../../components/SectionDescription/SectionDescription';
-import Box from '../../components/Box/Box';
-import TimelineHeader from '../../components/TimelineHeader/TimelineHeader';
+import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
+import SectionDescription from '../../components/complex/SectionDescription/SectionDescription';
+import Box from '../../components/complex/Box/Box';
+import TimelineHeader from '../../components/complex/TimelineHeader/TimelineHeader';
 
 class DiscographyView extends Component {
   componentDidMount() {
@@ -50,7 +50,7 @@ class DiscographyView extends Component {
                       header={item.header}
                       text={item.text}
                       buttonText="PLAY"
-                      buttonBg={ButtonBackgrounds[key]}
+                      buttonBgImage={ButtonBackgrounds[key]}
                       buttonClass="secondary"
                       invertTextColor
                     />

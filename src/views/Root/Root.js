@@ -9,7 +9,7 @@ import store from '../../store/index';
 import './index.css';
 
 // Components
-import Header from '../../components/Header/Header';
+import Header from '../../components/complex/Header/Header';
 import DiscographyView from '../DiscographyView/DiscographyView';
 import ToursView from '../ToursView/ToursView';
 import LatterCompositionsView from '../LatterCompositionsView/LatterCompositionsView';

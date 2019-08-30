@@ -10,10 +10,10 @@ import toursBg from '../../assets/images/tours-bg.png';
 import { fetchTours as fetchToursAction } from '../../actions/toursActions';
 
 // Components
-import Box from '../../components/Box/Box';
-import SectionTitle from '../../components/SectionTitle/SectionTitle';
-import SectionDescription from '../../components/SectionDescription/SectionDescription';
-import TimelineHeader from '../../components/TimelineHeader/TimelineHeader';
+import Box from '../../components/complex/Box/Box';
+import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
+import SectionDescription from '../../components/complex/SectionDescription/SectionDescription';
+import TimelineHeader from '../../components/complex/TimelineHeader/TimelineHeader';
 
 class ToursView extends Component {
   componentDidMount() {
