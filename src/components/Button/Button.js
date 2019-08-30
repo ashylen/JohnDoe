@@ -13,16 +13,12 @@ const Button = ({
   buttonBg,
   invertTextColor,
   openModalFn,
-  fixed,
   ...props
 }) => {
   let className;
   switch (buttonClass) {
     case 'secondary':
       className = styles.secondary;
-      break;
-    case 'secondaryFixed':
-      className = styles.secondaryFixed;
       break;
     case 'buttonFixed':
       className = styles.buttonFixed;
