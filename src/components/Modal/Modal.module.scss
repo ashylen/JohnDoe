@@ -1,26 +1,6 @@
 @import '../../utilities/CSS/variables.module.scss';
-
-@keyframes fadeSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-50%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
+@import '../../utilities/CSS/Animations/fadeIn.modules.scss';
+@import '../../utilities/CSS/Animations/fadeSlideIn.modules.scss';
 
 .wrapper {
   position: fixed;

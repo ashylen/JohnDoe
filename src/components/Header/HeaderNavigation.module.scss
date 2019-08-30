@@ -1,16 +1,5 @@
 @import '../../utilities/CSS/variables.module.scss';
-
-@keyframes slideIn {
-  0% {
-    background-color: transparent;
-    transform: translateX(-30%);
-  }
-
-  100% {
-    background-color: $black;
-    transform: translateX(0%);
-  }
-}
+@import '../../utilities/CSS/Animations/slideIn.modules.scss';
 
 .sticky {
   position: fixed;
@@ -21,7 +10,7 @@
   display: flex;
   justify-content: flex-end;
   background-color: rgba(0, 8, 12, 0.102);
-  font-family: "Dosis", sans-serif;
+  font-family: 'Dosis', sans-serif;
 
   .burger {
     padding: 10px;
@@ -54,7 +43,7 @@
         }
 
         &:hover::after {
-          content: "";
+          content: '';
           position: absolute;
           width: 100%;
           margin-top: 10px;
