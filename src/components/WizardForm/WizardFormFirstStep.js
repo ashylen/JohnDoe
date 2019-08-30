@@ -14,7 +14,11 @@ import CustomDatepicker from './CustomTextFields/CustomDatepicker';
 // Utilities
 import styles from './WizardForm.module.scss';
 import { required } from '../../utilities/Validators/required';
+import { maxLength } from '../../utilities/Validators/maxLength';
 import { isYouTubeUrl } from '../../utilities/Validators/isYouTubeUrl';
+
+const maxLength15 = maxLength(15);
+
 
 let WizardFormFirstStep = props => {
   const { handleSubmit, isEditMode } = props;
@@ -27,7 +31,7 @@ let WizardFormFirstStep = props => {
           name="header"
           component={CustomInput}
           type="text"
-          validate={[required]}
+          validate={[required, maxLength15]}
           label="Composition name"
         />
         <Field name="href" component={CustomInput} type="text" validate={[required]} label="Link" />
