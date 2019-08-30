@@ -1,24 +1,5 @@
-@keyframes fadeSlideIn {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -100%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -35%);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
+@import '../../utilities/CSS/Animations/fadeIn.modules.scss';
+@import '../../utilities/CSS/Animations/fadeSlideInLeft.modules.scss';
 
 .wrapper {
   position: relative;
@@ -39,7 +20,7 @@
     left: 50%;
     transform: translate(-50%, -35%);
 
-    animation: fadeSlideIn 1s;
+    animation: fadeSlideInLeft 1s;
 
     .logo {
       width: 100%;
