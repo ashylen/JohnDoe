@@ -1,12 +1,15 @@
 import React from 'react';
 
+// Modules
 import { NavLink } from 'react-router-dom';
+import IsScrolling from 'react-is-scrolling';
 
+// Utilities
 import HamburgerMenu from 'react-hamburger-menu';
-
-import SideBarNavigation from './SideBarNavigation';
-
 import styles from './HeaderNavigation.module.scss';
+
+// Components
+import SideBarNavigation from './SideBarNavigation';
 
 class HeaderNavigation extends React.Component {
   state = {
@@ -16,6 +19,9 @@ class HeaderNavigation extends React.Component {
   };
 
   componentDidMount = () => {
+
+    console.log(this.props);
+    
     const path = window.location.pathname;
     setTimeout(() => {
       const id = path.replace('/', '');
@@ -55,8 +61,10 @@ class HeaderNavigation extends React.Component {
   render() {
     window.addEventListener('resize', this.handleResize);
 
+    const navClassName = window.pageYOffset > 0 ? styles.stickyFullfilled : styles.sticky;
+
     return (
-      <nav className={styles.sticky}>
+      <nav className={navClassName}>
         {this.state.isMobile && (
           <div className={styles.burger}>
             <HamburgerMenu
@@ -157,4 +165,4 @@ class HeaderNavigation extends React.Component {
   }
 }
 
-export default HeaderNavigation;
+export default IsScrolling(HeaderNavigation);

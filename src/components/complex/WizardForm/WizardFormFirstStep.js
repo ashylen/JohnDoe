@@ -93,7 +93,7 @@ class WizardFormFirstStep extends Component {
           />
           <div className={styles.modalNavigation}>
             {pristine ? null : (
-              <Button cssClass="secondary" type="button" disabled={pristine} onClick={reset}>
+              <Button cssClass="" type="button" disabled={pristine} onClick={reset}>
                 Reset to Default
               </Button>
             )}
