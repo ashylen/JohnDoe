@@ -8,15 +8,27 @@ import {
 } from '../actions/compositionActions';
 
 const initialState = {
-  compositions:[]
+  compositions: [],
 };
 
 const compositionsReducer = (state = initialState, action) => {
+
+
   switch (action.type) {
+    case FETCH_COMPOSITIONS_ITEM_REQUEST:
+      return {
+        ...state,
+      };
+    case FETCH_COMPOSITIONS_ITEM_SUCCESS:
+      return {
+        ...state,
+        editItemData: action.payload.data,
+      };
     case FETCH_COMPOSITIONS_REQUEST:
       return {
         ...state,
       };
+
     case FETCH_COMPOSITIONS_SUCCESS:
       return {
         ...state,

@@ -38,7 +38,7 @@
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
   }
 
@@ -65,7 +65,7 @@
       }
       &:first-of-type {
         color: #000;
-        margin-left: auto;
+        // margin-left: auto;
         text-decoration: underline;
       }
       &:nth-of-type(2) {

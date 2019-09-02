@@ -2,6 +2,17 @@
 @import '../../../utilities/CSS/Animations/fadeIn.modules.scss';
 @import '../../../utilities/CSS/Animations/fadeSlideIn.modules.scss';
 
+.wrapperOuter {
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .wrapper {
   position: fixed;
   overflow: auto;
@@ -19,7 +30,6 @@
   background-color: white;
   box-shadow: 0 20px 40px -5px rgba(#abacac, 0.3);
   z-index: 10;
-  animation: fadeSlideIn 0.5s;
 
   h2 {
     margin: 0 0 3px 0;
@@ -54,7 +64,7 @@
 
     &::before,
     &::after {
-      content: "";
+      content: '';
       width: 16px;
       height: 2px;
       position: absolute;
@@ -95,26 +105,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
-  animation: fadeIn 0.5s;
 }
 
-
-.enter {
-  opacity: 0;
-}
-
-.enterActive {
-  opacity: 1;
-  transition: opacity 200ms ease-in-out;
-}
-
-.exit {
-  opacity: 1;
-}
-
-.exitActive {
-  opacity: 0;
-  transition: opacity 200ms ease-in-out;
-}

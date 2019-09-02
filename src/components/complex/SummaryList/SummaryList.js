@@ -11,15 +11,16 @@ import TimelineHeader from '../TimelineHeader/TimelineHeader';
 
 const SummaryList = ({ data }) => {
   const { header, href, date, subText, youTubeUrl, text } = data;
+
   return (
     <React.Fragment>
       <div className={styles.wrapper}>
-        <TimelineHeader date="Composition name">{header}</TimelineHeader>
-        <TimelineHeader date="Link">{href}</TimelineHeader>
-        <TimelineHeader date="Date">{date}</TimelineHeader>
-        <TimelineHeader date="Additional text">{subText}</TimelineHeader>
-        <TimelineHeader date="Youtube URL">{youTubeUrl}</TimelineHeader>
-        <TimelineHeader date="Text">{text}</TimelineHeader>
+        <TimelineHeader title="Composition name">{header}</TimelineHeader>
+        <TimelineHeader title="Link">{href}</TimelineHeader>
+        <TimelineHeader title="Date">{date}</TimelineHeader>
+        <TimelineHeader title="Additional text">{subText}</TimelineHeader>
+        <TimelineHeader title="Youtube URL">{youTubeUrl}</TimelineHeader>
+        <TimelineHeader title="Text">{text}</TimelineHeader>
       </div>
     </React.Fragment>
   );

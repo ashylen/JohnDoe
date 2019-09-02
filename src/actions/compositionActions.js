@@ -37,23 +37,35 @@ export const fetchCompositions = itemType => dispatch => {
 };
 
 export const fetchCompositionsItem = (itemType, itemId) => dispatch => {
-  dispatch({ type: FETCH_COMPOSITIONS_REQUEST });
+  dispatch({ type: FETCH_COMPOSITIONS_ITEM_REQUEST });
+
+  // console.log('itemid', itemId);
+
+  if (itemId === null) {
+    return dispatch({
+      type: FETCH_COMPOSITIONS_ITEM_SUCCESS,
+      payload: {
+        data: {},
+        itemType,
+      },
+    });
+  }
 
   return axios
     .get(`http://localhost:3000/${itemType}/${itemId}`)
     .then(({ data }) => {
       dispatch({
-        type: FETCH_COMPOSITIONS_SUCCESS,
+        type: FETCH_COMPOSITIONS_ITEM_SUCCESS,
         payload: {
           data,
           itemType,
-          itemId
+          itemId,
         },
       });
     })
     .catch(err => {
       console.error(err);
-      dispatch({ type: FETCH_COMPOSITIONS_FAILURE });
+      dispatch({ type: FETCH_COMPOSITIONS_ITEM_FAILURE });
     });
 };
 

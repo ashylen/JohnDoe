@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // Utilities
 import discographyBg from '../../assets/images/discography-bg.png';
 import textClippingMask from '../../assets/images/title-1-bg.png';
-import ButtonBackgrounds from './ButtonBackgrounds/ButtonBackgrounds'; // TO ASK - można tak importować? chcialem miec dynamiczne
+import ButtonBackgrounds from './ButtonBackgrounds/ButtonBackgrounds'; // TO ASK - można tak importować? aby było dynamiczne
 import styles from './DiscographyView.module.scss';
 import { fetchDiscography as fetchDiscographyAction } from '../../actions/discographyActions';
 
@@ -83,9 +83,8 @@ DiscographyView.propTypes = {
 
 const mapStateToProps = state => {
   const { discography } = state.discographyReducer;
-  const { isCompositionsModalOpen } = state.modalReducer;
 
-  return { discography, isCompositionsModalOpen };
+  return { discography };
 };
 
 const mapDispatchToProps = dispatch => ({

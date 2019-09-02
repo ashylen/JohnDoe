@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
+import { CSSTransition } from 'react-transition-group';
 
 // Utilities
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,6 +18,7 @@ import {
   openCompositionsModal as openCompositionsModalAction,
   closeCompositionsModal as closeCompositionsModalAction,
 } from '../../actions/modalActions';
+import fadeTransition from '../../utilities/CSS/Transitions/fade.module.scss';
 
 // Components
 import Box from '../../components/complex/Box/Box';
@@ -42,7 +44,14 @@ class LatterCompositionsView extends Component {
 
     return (
       <React.Fragment>
-        {isCompositionsModalOpen ? <Modal closeModalFn={closeCompositionsModal} /> : null}
+        <CSSTransition
+          in={isCompositionsModalOpen}
+          timeout={350}
+          classNames={{ ...fadeTransition }}
+          unmountOnExit
+        >
+          <Modal closeModalFn={closeCompositionsModal} />
+        </CSSTransition>
         <article id="latter-compositions" className={styles.article}>
           <div className={styles.wrapper}>
             <SectionTitle>Latter Compositions </SectionTitle>

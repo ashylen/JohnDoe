@@ -13,20 +13,14 @@ import WizardFormSecondStep from './WizardFormSecondStep';
 // Utilities
 import styles from './WizardForm.module.scss';
 import { GetStringFromDateObject } from '../../../utilities/Functions/GetStringFromDateObject';
-import { addItem as addItemAction, editItem as editItemAction, fetchCompositions as fetchCompositionsAction } from '../../../actions/compositionActions';
+import {
+  addItem as addItemAction,
+  editItem as editItemAction,
+  fetchCompositions as fetchCompositionsAction,
+} from '../../../actions/compositionActions';
 
 class WizardForm extends React.Component {
-  state = { step: 1 };
-
-  // componentDidMount z servera pobrac initial values compositions
-  componentDidMount() {
-    const { idCurrentItem , isEditMode } = this.props;
-
-    if(isEditMode)
-    {
-      
-    }
-  };
+  state = { step: 1, isAnimationShown: false };
 
   nextStep = () => {
     this.setState(prevState => ({
@@ -43,7 +37,15 @@ class WizardForm extends React.Component {
   handleSubmit = async formData => {
     formData.date = GetStringFromDateObject(formData.date);
 
-    const { addItem, editItem, closeModalFn , idCurrentItem , isEditMode , reset , fetchCompositions} = this.props;
+    const {
+      addItem,
+      editItem,
+      closeModalFn,
+      idCurrentItem,
+      isEditMode,
+      reset,
+      fetchCompositions,
+    } = this.props;
 
     if (isEditMode) {
       await editItem('compositions', idCurrentItem, formData);
@@ -64,7 +66,7 @@ class WizardForm extends React.Component {
         <div className={styles.wrapper}>
           {step === 1 && <WizardFormFirstStep isEditMode={isEditMode} onSubmit={this.nextStep} />}
           {step === 2 && (
-            <WizardFormSecondStep previousStep={this.previousStep} onSubmit={this.handleSubmit} />
+            <WizardFormSecondStep  previousStep={this.previousStep} onSubmit={this.handleSubmit} />
           )}
         </div>
       </React.Fragment>
@@ -83,12 +85,13 @@ WizardForm.propTypes = {
   isEditMode: PropTypes.bool.isRequired,
   idCurrentItem: PropTypes.number,
   reset: PropTypes.func.isRequired,
-  fetchCompositions: PropTypes.func.isRequired
+  fetchCompositions: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   const { isEditMode, idCurrentItem } = state.modalReducer;
-  return { isEditMode, idCurrentItem };
+  const { editItemData } = state.compositionsReducer;
+  return { isEditMode, idCurrentItem, editItemData };
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -99,12 +102,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(editItemAction(itemType, itemId, itemContent)),
 });
 
-export default reduxForm({
-  // TO DO potem bedzie sie walić podobno gdy bedzie initial values z servera pobierane
-  form: 'addNewCompositionForm',
-})(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(WizardForm),
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(
+  reduxForm({
+    form: 'addNewCompositionForm', // Have to be set here in order to work properly
+  })(WizardForm),
 );

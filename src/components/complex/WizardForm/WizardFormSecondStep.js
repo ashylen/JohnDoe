@@ -3,6 +3,7 @@ import React from 'react';
 // Modules
 import { connect } from 'react-redux';
 import { reduxForm, formValueSelector } from 'redux-form';
+import PropTypes from 'prop-types';
 
 // Utilities
 import styles from './WizardForm.module.scss';
@@ -22,7 +23,7 @@ let WizardFormSecondStep = props => {
         <SummaryList data={{ header, href, date, subText, youTubeUrl, text }} />
         <div className={styles.modalNavigation}>
           <Button cssClass="secondary" type="button" onClick={previousStep}>
-            Previous
+            Back
           </Button>
           <Button type="submit" disabled={submitting}>
             Submit
@@ -33,17 +34,17 @@ let WizardFormSecondStep = props => {
   );
 };
 
-// WizardFormSecondStep.propTypes = {
-//   handleSubmit: PropTypes.func.isRequired,
-//   previousStep: PropTypes.func.isRequired,
-//   submitting: PropTypes.bool.isRequired,
-//   text: PropTypes.string.isRequired,
-//   header: PropTypes.string.isRequired,
-//   href: PropTypes.string.isRequired,
-//   date: PropTypes.string.isRequired,
-//   youTubeUrl: PropTypes.string.isRequired,
-//   subText: PropTypes.string.isRequired,
-// };
+WizardFormSecondStep.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  previousStep: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
+  header: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  youTubeUrl: PropTypes.string.isRequired,
+  subText: PropTypes.string.isRequired,
+};
 
 WizardFormSecondStep = reduxForm({
   form: 'addNewCompositionForm',
