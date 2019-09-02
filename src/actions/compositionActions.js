@@ -12,9 +12,7 @@ export const FETCH_COMPOSITIONS_REQUEST = 'FETCH_COMPOSITIONS_REQUEST';
 export const FETCH_COMPOSITIONS_SUCCESS = 'FETCH_COMPOSITIONS_SUCCESS';
 export const FETCH_COMPOSITIONS_FAILURE = 'FETCH_COMPOSITIONS_FAILURE';
 
-export const FETCH_COMPOSITIONS_ITEM_REQUEST = 'FETCH_COMPOSITIONS_ITEM_REQUEST';
-export const FETCH_COMPOSITIONS_ITEM_SUCCESS = 'FETCH_COMPOSITIONS_ITEM_SUCCESS';
-export const FETCH_COMPOSITIONS_ITEM_FAILURE = 'FETCH_COMPOSITIONS_ITEM_FAILURE';
+
 
 export const fetchCompositions = itemType => dispatch => {
   dispatch({ type: FETCH_COMPOSITIONS_REQUEST });
@@ -36,38 +34,6 @@ export const fetchCompositions = itemType => dispatch => {
     });
 };
 
-export const fetchCompositionsItem = (itemType, itemId) => dispatch => {
-  dispatch({ type: FETCH_COMPOSITIONS_ITEM_REQUEST });
-
-  // console.log('itemid', itemId);
-
-  if (itemId === null) {
-    return dispatch({
-      type: FETCH_COMPOSITIONS_ITEM_SUCCESS,
-      payload: {
-        data: {},
-        itemType,
-      },
-    });
-  }
-
-  return axios
-    .get(`http://localhost:3000/${itemType}/${itemId}`)
-    .then(({ data }) => {
-      dispatch({
-        type: FETCH_COMPOSITIONS_ITEM_SUCCESS,
-        payload: {
-          data,
-          itemType,
-          itemId,
-        },
-      });
-    })
-    .catch(err => {
-      console.error(err);
-      dispatch({ type: FETCH_COMPOSITIONS_ITEM_FAILURE });
-    });
-};
 
 export const addItem = (itemType, itemContent) => dispatch => {
   dispatch({ type: ADD_COMPOSITIONS_REQUEST });

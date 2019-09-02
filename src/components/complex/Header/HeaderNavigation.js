@@ -14,14 +14,10 @@ import SideBarNavigation from './SideBarNavigation';
 class HeaderNavigation extends React.Component {
   state = {
     isOpen: false,
-    location: null,
     isMobile: window.innerWidth < 1024,
   };
 
   componentDidMount = () => {
-
-    console.log(this.props);
-    
     const path = window.location.pathname;
     setTimeout(() => {
       const id = path.replace('/', '');
@@ -60,30 +56,30 @@ class HeaderNavigation extends React.Component {
 
   render() {
     window.addEventListener('resize', this.handleResize);
-
+    const { isMobile, isOpen } = this.state;
     const navClassName = window.pageYOffset > 0 ? styles.stickyFullfilled : styles.sticky;
 
     return (
       <nav className={navClassName}>
-        {this.state.isMobile && (
+        {isMobile && (
           <div className={styles.burger}>
             <HamburgerMenu
               width={25}
               height={20}
               strokeWidth={3}
               color={'#a1a1a1'}
-              isOpen={this.state.isOpen}
+              isOpen={isOpen}
               menuClicked={this.menuClicked}
             />
           </div>
         )}
-        {this.state.isOpen && this.state.isMobile && (
-          <SideBarNavigation isSideBarOpen={this.state.isOpen} navOnClickFn={this.navOnClick} />
+        {isOpen && isMobile && (
+          <SideBarNavigation isSideBarOpen={isOpen} navOnClickFn={this.navOnClick} />
         )}
 
-        {this.state.isOpen && <div onClick={this.closeMenu} className={styles.overlay}></div>}
+        {isOpen && <div onClick={this.closeMenu} className={styles.overlay} />}
 
-        {!this.state.isOpen && !this.state.isMobile && (
+        {!isOpen && !isMobile && (
           <ul className={styles.wrapper}>
             <li className={styles.navItem}>
               <NavLink

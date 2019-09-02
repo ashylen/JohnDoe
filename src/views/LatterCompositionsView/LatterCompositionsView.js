@@ -37,7 +37,7 @@ class LatterCompositionsView extends Component {
   render() {
     const {
       compositions,
-      isCompositionsModalOpen,
+      isModalOpen,
       openCompositionsModal,
       closeCompositionsModal,
     } = this.props;
@@ -45,7 +45,7 @@ class LatterCompositionsView extends Component {
     return (
       <React.Fragment>
         <CSSTransition
-          in={isCompositionsModalOpen}
+          in={isModalOpen}
           timeout={350}
           classNames={{ ...fadeTransition }}
           unmountOnExit
@@ -95,7 +95,7 @@ class LatterCompositionsView extends Component {
             <Button
               cssClass="buttonFixed"
               onClick={() => {
-                openCompositionsModal(false);
+                openCompositionsModal(false, null);
               }}
             >
               <FontAwesomeIcon icon={faPlus} color="#abacac" size="1x" />
@@ -115,7 +115,7 @@ LatterCompositionsView.propTypes = {
   fetchCompositions: PropTypes.func.isRequired,
   openCompositionsModal: PropTypes.func.isRequired,
   closeCompositionsModal: PropTypes.func.isRequired,
-  isCompositionsModalOpen: PropTypes.bool.isRequired,
+  isModalOpen: PropTypes.bool.isRequired,
   compositions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -131,16 +131,16 @@ LatterCompositionsView.propTypes = {
 
 const mapStateToProps = state => {
   const { compositions } = state.compositionsReducer;
-  const { isCompositionsModalOpen } = state.modalReducer;
+  const { isModalOpen } = state.modalReducer.compositions;
 
-  return { compositions, isCompositionsModalOpen };
+  return { compositions, isModalOpen };
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchCompositions: () => dispatch(fetchCompositionsAction('compositions')),
   openCompositionsModal: (isEditMode, idCurrentItem) =>
-    dispatch(openCompositionsModalAction(isEditMode, idCurrentItem)),
-  closeCompositionsModal: () => dispatch(closeCompositionsModalAction()),
+    dispatch(openCompositionsModalAction("compositions", isEditMode, idCurrentItem)),
+  closeCompositionsModal: () => dispatch(closeCompositionsModalAction("compositions")),
 });
 
 export default connect(

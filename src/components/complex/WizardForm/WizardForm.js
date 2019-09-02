@@ -20,7 +20,7 @@ import {
 } from '../../../actions/compositionActions';
 
 class WizardForm extends React.Component {
-  state = { step: 1, isAnimationShown: false };
+  state = { step: 1 };
 
   nextStep = () => {
     this.setState(prevState => ({
@@ -43,17 +43,28 @@ class WizardForm extends React.Component {
       closeModalFn,
       idCurrentItem,
       isEditMode,
-      reset,
+      // reset,
       fetchCompositions,
     } = this.props;
 
-    if (isEditMode) {
-      await editItem('compositions', idCurrentItem, formData);
-    } else {
-      await addItem('compositions', formData);
+    try {
+      if (isEditMode) {
+        await editItem('compositions', idCurrentItem, formData);
+      } else {
+        await addItem('compositions', formData);
+      }
+    } catch (e) {
+      console.error(e);
     }
-    await reset('addNewCompositionForm');
-    await fetchCompositions();
+
+    // await reset('addNewCompositionForm');
+
+    try {
+      await fetchCompositions();
+    } catch (e) {
+      console.error(e);
+    }
+
     await closeModalFn();
   };
 
@@ -66,7 +77,7 @@ class WizardForm extends React.Component {
         <div className={styles.wrapper}>
           {step === 1 && <WizardFormFirstStep isEditMode={isEditMode} onSubmit={this.nextStep} />}
           {step === 2 && (
-            <WizardFormSecondStep  previousStep={this.previousStep} onSubmit={this.handleSubmit} />
+            <WizardFormSecondStep previousStep={this.previousStep} onSubmit={this.handleSubmit} />
           )}
         </div>
       </React.Fragment>
@@ -84,12 +95,12 @@ WizardForm.propTypes = {
   closeModalFn: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool.isRequired,
   idCurrentItem: PropTypes.number,
-  reset: PropTypes.func.isRequired,
+  // reset: PropTypes.func.isRequired,
   fetchCompositions: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
-  const { isEditMode, idCurrentItem } = state.modalReducer;
+  const { isEditMode, idCurrentItem } = state.modalReducer.compositions;
   const { editItemData } = state.compositionsReducer;
   return { isEditMode, idCurrentItem, editItemData };
 };

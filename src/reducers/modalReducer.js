@@ -1,9 +1,15 @@
-import { OPEN_COMPOSITIONS_MODAL, CLOSE_COMPOSITIONS_MODAL } from '../actions/modalActions';
+import {
+  OPEN_COMPOSITIONS_MODAL,
+  CLOSE_COMPOSITIONS_MODAL
+} from '../actions/modalActions';
 
 const initialState = {
-  isCompositionsModalOpen: false,
-  isEditMode: false,
-  idCurrentItem: null,
+  compositions: {
+    isModalOpen: false,
+    isEditMode: false,
+    idCurrentItem: null,
+    editItemData: {},
+  },
 };
 
 const modalReducer = (state = initialState, action) => {
@@ -11,16 +17,22 @@ const modalReducer = (state = initialState, action) => {
     case OPEN_COMPOSITIONS_MODAL:
       return {
         ...state,
-        isCompositionsModalOpen: action.isCompositionsModalOpen,
-        isEditMode: action.isEditMode,
-        idCurrentItem: action.idCurrentItem,
+        [action.itemType]: {
+          isModalOpen: action[action.itemType].isModalOpen,
+          isEditMode: action[action.itemType].isEditMode,
+          idCurrentItem: action[action.itemType].idCurrentItem,
+          editItemData: action[action.itemType].editItemData,
+        },
       };
     case CLOSE_COMPOSITIONS_MODAL:
       return {
         ...state,
-        isCompositionsModalOpen: action.isCompositionsModalOpen,
-        isEditMode: action.isEditMode,
-        idCurrentItem: action.idCurrentItem,
+        [action.itemType]: {
+          isModalOpen: action[action.itemType].isModalOpen,
+          isEditMode: action[action.itemType].isEditMode,
+          idCurrentItem: action[action.itemType].idCurrentItem,
+          editItemData: action[action.itemType].editItemData,
+        },
       };
     default:
       return state;

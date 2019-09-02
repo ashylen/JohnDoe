@@ -80,9 +80,9 @@ ToursView.propTypes = {
 
 const mapStateToProps = state => {
   const { tours } = state.toursReducer;
-  const { isCompositionsModalOpen } = state.modalReducer;
+  const { isModalOpen } = state.modalReducer.compositions;
 
-  return { tours, isCompositionsModalOpen };
+  return { tours, isModalOpen };
 };
 
 const mapDispatchToProps = dispatch => ({

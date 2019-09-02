@@ -34,16 +34,25 @@ let WizardFormSecondStep = props => {
   );
 };
 
+WizardFormSecondStep.defaultProps = {
+  text: '',
+  header: '',
+  href: '',
+  date: '',
+  youTubeUrl: '',
+  subText: '',
+};
+
 WizardFormSecondStep.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   previousStep: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
-  header: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  youTubeUrl: PropTypes.string.isRequired,
-  subText: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  header: PropTypes.string,
+  href: PropTypes.string,
+  date: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+  youTubeUrl: PropTypes.string,
+  subText: PropTypes.string,
 };
 
 WizardFormSecondStep = reduxForm({
