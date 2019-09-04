@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
 import { CSSTransition } from 'react-transition-group';
+import { bindActionCreators } from 'redux';
 
 // Utilities
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,12 +36,7 @@ class LatterCompositionsView extends Component {
   }
 
   render() {
-    const {
-      compositions,
-      isModalOpen,
-      openCompositionsModal,
-      closeCompositionsModal,
-    } = this.props;
+    const { compositions, isModalOpen, openCompositionsModal, closeCompositionsModal } = this.props;
 
     return (
       <React.Fragment>
@@ -137,10 +133,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchCompositions: () => dispatch(fetchCompositionsAction('compositions')),
+  fetchCompositions: () => dispatch(fetchCompositionsAction()),
   openCompositionsModal: (isEditMode, idCurrentItem) =>
-    dispatch(openCompositionsModalAction("compositions", isEditMode, idCurrentItem)),
-  closeCompositionsModal: () => dispatch(closeCompositionsModalAction("compositions")),
+    dispatch(openCompositionsModalAction(isEditMode, idCurrentItem)),
+  closeCompositionsModal: bindActionCreators(closeCompositionsModalAction, dispatch),
 });
 
 export default connect(

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Modules
 import { NavLink } from 'react-router-dom';
@@ -7,158 +7,81 @@ import IsScrolling from 'react-is-scrolling';
 // Utilities
 import HamburgerMenu from 'react-hamburger-menu';
 import styles from './HeaderNavigation.module.scss';
+import { width1024 } from '../../../constants/MediaQueries';
+import { useWindowSize } from '../../../utilities/Functions/useWindowSize';
+import { routes, routesNames } from '../../../routes';
 
 // Components
 import SideBarNavigation from './SideBarNavigation';
 
-class HeaderNavigation extends React.Component {
-  state = {
-    isOpen: false,
-    isMobile: window.innerWidth < 1024,
-  };
+const HeaderNavigation = () => {
+  const [isSideBarOpen, setIsSideBarOpen] = useState(0);
+  const isMobile = useWindowSize().width < width1024;
+  const navClassName = window.pageYOffset > 0 ? styles.stickyFullfilled : styles.sticky;
 
-  componentDidMount = () => {
-    const path = window.location.pathname;
-    setTimeout(() => {
-      const id = path.replace('/', '');
-      const element = document.getElementById(id);
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
-    }, 0);
-  };
-
-  handleResize = () => {
-    this.setState(() => ({
-      isMobile: window.innerWidth < 1024,
-    }));
-  };
-
-  menuClicked = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
-  };
-
-  closeMenu = () => {
-    this.setState(() => ({
-      isOpen: false,
-    }));
-  };
-
-  navOnClick = path => {
+  const navOnClick = async path => {
     if (path !== '') {
-      setTimeout(() => {
-        const element = document.getElementById(path);
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
-      }, 0);
-      this.closeMenu();
+      const element = await document.getElementById(path);
+      if (element) {
+        await element.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      if (isMobile) {
+        await setIsSideBarOpen(false);
+      }
     }
   };
 
-  render() {
-    window.addEventListener('resize', this.handleResize);
-    const { isMobile, isOpen } = this.state;
-    const navClassName = window.pageYOffset > 0 ? styles.stickyFullfilled : styles.sticky;
+  return (
+    <nav className={navClassName}>
+      {isMobile && (
+        <div className={styles.burger}>
+          <HamburgerMenu
+            width={25}
+            height={20}
+            strokeWidth={3}
+            color="#a1a1a1"
+            isOpen={isSideBarOpen}
+            menuClicked={() => {
+              setIsSideBarOpen(true);
+            }}
+          />
+        </div>
+      )}
 
-    return (
-      <nav className={navClassName}>
-        {isMobile && (
-          <div className={styles.burger}>
-            <HamburgerMenu
-              width={25}
-              height={20}
-              strokeWidth={3}
-              color={'#a1a1a1'}
-              isOpen={isOpen}
-              menuClicked={this.menuClicked}
-            />
-          </div>
-        )}
-        {isOpen && isMobile && (
-          <SideBarNavigation isSideBarOpen={isOpen} navOnClickFn={this.navOnClick} />
-        )}
+      {isSideBarOpen && isMobile ? (
+        <React.Fragment>
+          <SideBarNavigation isSideBarOpen={isSideBarOpen} navOnClickFn={navOnClick} />
+          <div
+            onClick={() => {
+              setIsSideBarOpen(false);
+            }}
+            className={styles.overlay}
+          />
+        </React.Fragment>
+      ) : null}
 
-        {isOpen && <div onClick={this.closeMenu} className={styles.overlay} />}
 
-        {!isOpen && !isMobile && (
-          <ul className={styles.wrapper}>
-            <li className={styles.navItem}>
-              <NavLink
-                exact
-                className={styles.navItemLink}
-                to="/about"
-                onClick={() => this.navOnClick('about')}
-              >
-                About
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink
-                className={styles.navItemLink}
-                to="/discography"
-                onClick={() => this.navOnClick('discography')}
-              >
-                Discography
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink
-                className={styles.navItemLink}
-                to="/concert-tours"
-                onClick={() => this.navOnClick('concert-tours')}
-              >
-                Concert Tours
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink
-                className={styles.navItemLink}
-                to="/latter-compositions"
-                onClick={() => this.navOnClick('latter-compositions')}
-              >
-                Latter Compositions
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink
-                className={styles.navItemLink}
-                to="/new-tracks"
-                onClick={() => this.navOnClick('new-tracks')}
-              >
-                New tracks
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink
-                className={styles.navItemLink}
-                to="/upcoming-events"
-                onClick={() => this.navOnClick('upcoming-events')}
-              >
-                Upcoming Events
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink
-                className={styles.navItemLink}
-                to="/history"
-                onClick={() => this.navOnClick('history')}
-              >
-                History
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink
-                className={styles.navItemLink}
-                to="/contact"
-                onClick={() => this.navOnClick('contact')}
-              >
-                Contact
-              </NavLink>
-            </li>
-          </ul>
-        )}
-      </nav>
-    );
-  }
-}
+      {!isSideBarOpen && !isMobile && (
+        <ul className={styles.wrapper}>
+          {routes
+            ? routes.map(route => (
+                <li key={route} className={styles.navItem}>
+                  <NavLink
+                    exact
+                    className={styles.navItemLink}
+                    to={`/${route}`}
+                    onClick={() => navOnClick(route)}
+                  >
+                    {routesNames[route]}
+                  </NavLink>
+                </li>
+              ))
+            : null}
+        </ul>
+      )}
+    </nav>
+  );
+};
 
 export default IsScrolling(HeaderNavigation);

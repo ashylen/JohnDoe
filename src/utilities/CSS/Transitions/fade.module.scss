@@ -26,7 +26,7 @@
 
   &Active {
     & > div {
-      transform: translateY(-30%);
+      transform: translateY(30%);
     }
     opacity: 0;
     transition: opacity 200ms ease-in-out;

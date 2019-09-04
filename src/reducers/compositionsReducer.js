@@ -19,12 +19,12 @@ const compositionsReducer = (state = initialState, action) => {
     case FETCH_COMPOSITIONS_SUCCESS:
       return {
         ...state,
-        [action.payload.itemType]: [...action.payload.data],
+        compositions: [...action.payload.data],
       };
     case ADD_COMPOSITIONS_SUCCESS:
       return {
         ...state,
-        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.data],
+        compositions: [...state.compositions, action.payload.data],
       };
     case EDIT_COMPOSITIONS_SUCCESS:
     default:

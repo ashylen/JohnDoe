@@ -18,7 +18,6 @@ const Modal = ({ closeModalFn }) => {
           <WizardForm closeModalFn={closeModalFn} />
         </div>
         <div onClick={closeModalFn} className={styles.overlay} />
-        {/* TO ASK - można dawać eventy na divach? */}
       </div>
   );
 };

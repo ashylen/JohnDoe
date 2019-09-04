@@ -1,4 +1,4 @@
-import { YOUTUBE_REGEXP } from '../../constants/YouTubeRegExp';
+import { YOUTUBE_REGEXP } from '../../constants/YouTubeRegExp'; 
 
 export const isYouTubeUrl = value => {
   const regex = new RegExp(YOUTUBE_REGEXP);

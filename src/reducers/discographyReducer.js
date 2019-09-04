@@ -13,7 +13,7 @@ const discographyReducer = (state = initialState, action) => {
     case FETCH_DISCOGRAPHY_SUCCESS:
       return {
         ...state,
-        [action.payload.itemType]: [...action.payload.data],
+        discography: [...action.payload.data],
       };
     default:
       return state;

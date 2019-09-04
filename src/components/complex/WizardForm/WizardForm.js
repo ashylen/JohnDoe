@@ -14,8 +14,8 @@ import WizardFormSecondStep from './WizardFormSecondStep';
 import styles from './WizardForm.module.scss';
 import { GetStringFromDateObject } from '../../../utilities/Functions/GetStringFromDateObject';
 import {
-  addItem as addItemAction,
-  editItem as editItemAction,
+  addComposition as addCompositionAction,
+  editComposition as editCompositionAction,
   fetchCompositions as fetchCompositionsAction,
 } from '../../../actions/compositionActions';
 
@@ -38,8 +38,8 @@ class WizardForm extends React.Component {
     formData.date = GetStringFromDateObject(formData.date);
 
     const {
-      addItem,
-      editItem,
+      addComposition,
+      editComposition,
       closeModalFn,
       idCurrentItem,
       isEditMode,
@@ -49,15 +49,13 @@ class WizardForm extends React.Component {
 
     try {
       if (isEditMode) {
-        await editItem('compositions', idCurrentItem, formData);
+        await editComposition(idCurrentItem, formData);
       } else {
-        await addItem('compositions', formData);
+        await addComposition(formData);
       }
     } catch (e) {
       console.error(e);
     }
-
-    // await reset('addNewCompositionForm');
 
     try {
       await fetchCompositions();
@@ -90,12 +88,11 @@ WizardForm.defaultProps = {
 };
 
 WizardForm.propTypes = {
-  addItem: PropTypes.func.isRequired,
-  editItem: PropTypes.func.isRequired,
+  addComposition: PropTypes.func.isRequired,
+  editComposition: PropTypes.func.isRequired,
   closeModalFn: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool.isRequired,
   idCurrentItem: PropTypes.number,
-  // reset: PropTypes.func.isRequired,
   fetchCompositions: PropTypes.func.isRequired,
 };
 
@@ -106,11 +103,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchCompositions: () => dispatch(fetchCompositionsAction('compositions')),
-  addItem: (itemType, itemContent) => dispatch(addItemAction(itemType, itemContent)),
+  fetchCompositions: () => dispatch(fetchCompositionsAction()),
+  addComposition: (itemContent) => dispatch(addCompositionAction(itemContent)),
   reset: bindActionCreators(resetReduxForm, dispatch),
-  editItem: (itemType, itemId, itemContent) =>
-    dispatch(editItemAction(itemType, itemId, itemContent)),
+  editComposition: (itemId, itemContent) =>
+    dispatch(editCompositionAction(itemId, itemContent)),
 });
 
 export default connect(

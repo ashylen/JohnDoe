@@ -1,25 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./SectionTitle.module.scss";
+import styles from './SectionTitle.module.scss';
 
 const SectionTitle = ({ children, textCustomize }) => {
-  const bg =
-    textCustomize !== "gradient"
-      ? { backgroundImage: `url(${textCustomize})` }
-      : null;
+  let customClassName;
 
-  const customClassName =
-    textCustomize === "gradient"
-      ? styles.gradient
-      : textCustomize
-      ? styles.clippingMask
-      : styles.title;
+  if (textCustomize !== 'gradient') {
+    customClassName = styles.clippingMask;
+  } else {
+    customClassName = styles.gradient;
+  }
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={customClassName} style={bg}>
-        {children}
-      </h1>
+      <h1 className={customClassName}>{children}</h1>
     </div>
   );
 };

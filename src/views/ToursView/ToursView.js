@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 // Utilities
 import styles from './ToursView.module.scss';
-import toursBg from '../../assets/images/tours-bg.png';
 import { fetchTours as fetchToursAction } from '../../actions/toursActions';
 
 // Components
@@ -27,9 +26,8 @@ class ToursView extends Component {
     return (
       <React.Fragment>
         <article
-          id="concert-tours"
+          id="concert_tours"
           className={styles.article}
-          style={{ backgroundImage: `url(${toursBg})` }}
         >
           <div className={styles.wrapper}>
             <SectionTitle textCustomize="gradient">Concert Tours</SectionTitle>

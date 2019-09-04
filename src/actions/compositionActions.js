@@ -14,17 +14,16 @@ export const FETCH_COMPOSITIONS_FAILURE = 'FETCH_COMPOSITIONS_FAILURE';
 
 
 
-export const fetchCompositions = itemType => dispatch => {
+export const fetchCompositions = () => dispatch => {
   dispatch({ type: FETCH_COMPOSITIONS_REQUEST });
 
   return axios
-    .get(`http://localhost:3000/${itemType}`)
+    .get(`http://localhost:3000/compositions`)
     .then(({ data }) => {
       dispatch({
         type: FETCH_COMPOSITIONS_SUCCESS,
         payload: {
-          data,
-          itemType,
+          data
         },
       });
     })
@@ -35,19 +34,18 @@ export const fetchCompositions = itemType => dispatch => {
 };
 
 
-export const addItem = (itemType, itemContent) => dispatch => {
+export const addComposition = (itemContent) => dispatch => {
   dispatch({ type: ADD_COMPOSITIONS_REQUEST });
 
   return axios
-    .post(`http://localhost:3000/${itemType}`, {
+    .post(`http://localhost:3000/compositions`, {
       ...itemContent,
     })
     .then(({ data }) => {
       dispatch({
         type: ADD_COMPOSITIONS_SUCCESS,
         payload: {
-          data,
-          itemType,
+          data
         },
       });
     })
@@ -56,11 +54,11 @@ export const addItem = (itemType, itemContent) => dispatch => {
     });
 };
 
-export const editItem = (itemType, itemId, itemContent) => dispatch => {
+export const editComposition = (itemId, itemContent) => dispatch => {
   dispatch({ type: EDIT_COMPOSITIONS_REQUEST });
 
   return axios
-    .put(`http://localhost:3000/${itemType}/${itemId}`, {
+    .put(`http://localhost:3000/compositions/${itemId}`, {
       ...itemContent,
     })
     .then(({ data }) => {
@@ -68,8 +66,7 @@ export const editItem = (itemType, itemId, itemContent) => dispatch => {
         type: EDIT_COMPOSITIONS_SUCCESS,
         payload: {
           data,
-          itemType,
-          itemId,
+          itemId
         },
       });
     })

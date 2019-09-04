@@ -13,7 +13,7 @@ const toursReducer = (state = initialState, action) => {
     case FETCH_TOURS_SUCCESS:
       return {
         ...state,
-        [action.payload.itemType]: [...action.payload.data],
+        tours: [...action.payload.data],
       };
     default:
       return state;

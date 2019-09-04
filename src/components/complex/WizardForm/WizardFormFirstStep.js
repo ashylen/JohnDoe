@@ -16,7 +16,6 @@ import styles from './WizardForm.module.scss';
 import { required } from '../../../utilities/Validators/required';
 import { maxLength } from '../../../utilities/Validators/maxLength';
 import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
-// import { fetchCompositionsItem as fetchCompositionsItemAction } from '../../../actions/modalActions';
 
 const maxLength15 = maxLength(15);
 const isRequired = required;
@@ -142,7 +141,7 @@ export default connect(
 )(
   reduxForm({
     form: 'addNewCompositionForm',
-    enableReinitialize: true, // TO ASK - resetowanie forma
+    enableReinitialize: true, 
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
   })(WizardFormFirstStep),
