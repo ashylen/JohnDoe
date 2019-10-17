@@ -7,11 +7,12 @@ import HeaderNavigation from './HeaderNavigation';
 import styles from './Header.module.scss';
 
 // Components
+import headerBg from '../../../assets/images/header-bg.png';
 import logo from './header-logo.png';
 
 const Header = () => {
   return (
-    <header id="about" className={styles.wrapper}>
+    <header id="about" className={styles.wrapper}  style={{ backgroundImage: `url(${headerBg})` }}>
       <HeaderNavigation />
       <div className={styles.logoWrapper}>
         <img className={styles.logo} src={logo} alt="Logo" />

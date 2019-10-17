@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // Utilities
+import discographyBg from '../../assets/images/discography-bg.png';
 import styles from './DiscographyView.module.scss';
 import { fetchDiscography as fetchDiscographyAction } from '../../actions/discographyActions';
+import ButtonBackgrounds from './ButtonBackgrounds/ButtonBackgrounds';
 
 // Components
 import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
@@ -15,14 +17,7 @@ import Box from '../../components/complex/Box/Box';
 import TimelineHeader from '../../components/complex/TimelineHeader/TimelineHeader';
 
 
-
 class DiscographyView extends Component {
-
-   ButtonBackgrounds = [
-    '/assets/images/discography-button-1-bg.png', 
-    '/assets/images/discography-button-2-bg.png',
-    '/assets/images/discography-button-3-bg.png'
-   ];
 
   componentDidMount() {
     const { fetchDiscography } = this.props;
@@ -37,9 +32,10 @@ class DiscographyView extends Component {
         <article
           id="discography"
           className={styles.article}
+          style={{ backgroundImage: `url(${discographyBg})` }}
         >
           <div className={styles.wrapper}>
-            <SectionTitle textCustomize="clipping-mask">Discography</SectionTitle>
+            <SectionTitle textCustomize="gradient">Discography</SectionTitle>
             <SectionDescription>
               September 4 world heard Night Visions, the first full album. He reached the 2 position
               in the chart Billboard 200. The single «It&#39;s Time» took 22 th place in the
@@ -55,7 +51,7 @@ class DiscographyView extends Component {
                       header={item.header}
                       text={item.text}
                       buttonText="PLAY"
-                      buttonBgImage={this.ButtonBackgrounds[key]}
+                      buttonBgImage={ButtonBackgrounds[key]}
                       buttonClass="secondary"
                       invertTextColor={key === 0 || false }
                     />

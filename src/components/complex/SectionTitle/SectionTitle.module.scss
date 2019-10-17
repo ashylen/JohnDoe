@@ -42,7 +42,7 @@
 
   .clippingMask {
     @extend .title;
-    background-image: url('/assets/images/title-1-bg.png');
+    // background-image: url('/assets/images/title-1-bg.png');
 
     -webkit-background-clip: text;
     /* let's assume that one day it's supported */
