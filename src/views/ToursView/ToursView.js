@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 // Utilities
 import styles from './ToursView.module.scss';
 import { fetchTours as fetchToursAction } from '../../actions/toursActions';
+import toursBg from '../../assets/images/tours-bg.png';
 
 // Components
 import Box from '../../components/complex/Box/Box';
@@ -28,6 +29,7 @@ class ToursView extends Component {
         <article
           id="concert_tours"
           className={styles.article}
+          style={{ backgroundImage: `url(${toursBg})` }}
         >
           <div className={styles.wrapper}>
             <SectionTitle textCustomize="gradient">Concert Tours</SectionTitle>
