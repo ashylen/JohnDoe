@@ -50,7 +50,7 @@ class LatterCompositionsView extends Component {
         </CSSTransition>
         <article id="latter-compositions" className={styles.article}>
           <div className={styles.wrapper}>
-            <SectionTitle>Latter Compositions </SectionTitle>
+            <SectionTitle textCustomize='gradient'>Latter Compositions </SectionTitle>
             <SectionDescription>
               &quot;It&#39;s Time&quot; was released as the lead single from Continued Silence and
               It&#39;s Time, both extended plays preceding Night Visions&#39; release.
