@@ -8,7 +8,7 @@ export const fetchTours = () => dispatch => {
   dispatch({ type: FETCH_TOURS_REQUEST });
 
   return axios
-    .get(`http://localhost:3000/tours`)
+    .get(`${process.env.REACT_APP_API_URL}/tours`)
     .then(({ data }) => {
       dispatch({
         type: FETCH_TOURS_SUCCESS,

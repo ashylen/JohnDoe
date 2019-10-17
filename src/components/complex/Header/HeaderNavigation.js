@@ -34,6 +34,7 @@ const HeaderNavigation = () => {
 
   return (
     <nav className={navClassName}>
+      {/* BURGER */}
       {isMobile && (
         <div className={styles.burger}>
           <HamburgerMenu
@@ -49,6 +50,7 @@ const HeaderNavigation = () => {
         </div>
       )}
 
+      {/* Side bar on mobiles */}
       {isSideBarOpen && isMobile ? (
         <React.Fragment>
           <SideBarNavigation isSideBarOpen={isSideBarOpen} navOnClickFn={navOnClick} />
@@ -61,7 +63,7 @@ const HeaderNavigation = () => {
         </React.Fragment>
       ) : null}
 
-
+      {/* Default nav on desktops */}
       {!isSideBarOpen && !isMobile && (
         <ul className={styles.wrapper}>
           {routes

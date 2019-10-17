@@ -8,7 +8,7 @@ export const fetchDiscography = () => dispatch => {
   dispatch({ type: FETCH_DISCOGRAPHY_REQUEST });
 
   return axios
-    .get(`http://localhost:3000/discography`)
+    .get(`${process.env.REACT_APP_API_URL}/discography`)
     .then(({ data }) => {
       dispatch({
         type: FETCH_DISCOGRAPHY_SUCCESS,

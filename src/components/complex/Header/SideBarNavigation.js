@@ -1,8 +1,11 @@
 import React from 'react';
 
+// Modules
 import { NavLink } from 'react-router-dom';
-import { routes, routesNames } from '../../../routes';
+import PropTypes from 'prop-types';
 
+// Utilities
+import { routes, routesNames } from '../../../routes';
 import styles from './SideBarNavigation.module.scss';
 
 const SideBarNavigation = ({ navOnClickFn }) => {
@@ -26,6 +29,10 @@ const SideBarNavigation = ({ navOnClickFn }) => {
       </ul>
     </aside>
   );
+};
+
+SideBarNavigation.propTypes = {
+  navOnClickFn: PropTypes.func.isRequired,
 };
 
 export default SideBarNavigation;

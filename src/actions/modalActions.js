@@ -21,7 +21,7 @@ export const openCompositionsModal = (isEditMode, idCurrentItem) => dispatch => 
     });
   } else {
     return axios
-      .get(`http://localhost:3000/compositions/${idCurrentItem}`)
+      .get(`${process.env.REACT_APP_API_URL}/compositions/${idCurrentItem}`)
       .then(({ data }) => {
         dispatch({
           type: OPEN_COMPOSITIONS_MODAL,

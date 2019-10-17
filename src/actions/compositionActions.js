@@ -12,13 +12,11 @@ export const FETCH_COMPOSITIONS_REQUEST = 'FETCH_COMPOSITIONS_REQUEST';
 export const FETCH_COMPOSITIONS_SUCCESS = 'FETCH_COMPOSITIONS_SUCCESS';
 export const FETCH_COMPOSITIONS_FAILURE = 'FETCH_COMPOSITIONS_FAILURE';
 
-
-
 export const fetchCompositions = () => dispatch => {
   dispatch({ type: FETCH_COMPOSITIONS_REQUEST });
 
   return axios
-    .get(`http://localhost:3000/compositions`)
+    .get(`${process.env.REACT_APP_API_URL}/compositions`)
     .then(({ data }) => {
       dispatch({
         type: FETCH_COMPOSITIONS_SUCCESS,
@@ -38,7 +36,7 @@ export const addComposition = (itemContent) => dispatch => {
   dispatch({ type: ADD_COMPOSITIONS_REQUEST });
 
   return axios
-    .post(`http://localhost:3000/compositions`, {
+    .post(`${process.env.REACT_APP_API_URL}/compositions`, {
       ...itemContent,
     })
     .then(({ data }) => {
@@ -58,7 +56,7 @@ export const editComposition = (itemId, itemContent) => dispatch => {
   dispatch({ type: EDIT_COMPOSITIONS_REQUEST });
 
   return axios
-    .put(`http://localhost:3000/compositions/${itemId}`, {
+    .put(`${process.env.REACT_APP_API_URL}/compositions/${itemId}`, {
       ...itemContent,
     })
     .then(({ data }) => {

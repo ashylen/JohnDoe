@@ -1,20 +1,22 @@
-import React from "react";
+import React from 'react';
 
-//Modules
-import styles from "./SocialBox.module.scss";
+// Modules
 import {
   faVolumeDown,
   faHeart,
   faShareSquare,
-  faCommentAlt
-} from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
+  faCommentAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
+// Utilities
+import styles from './SocialBox.module.scss';
 
-//Components
-import SocialBoxItem from "../SocialBox/SocialBoxItem";
+// Components
+import SocialBoxItem from './SocialBoxItem';
 
-const SocialBox = ({socialBoxContent}) => {
+const SocialBox = ({ socialBoxContent }) => {
+
   const { auditions, likes, comments, shares } = socialBoxContent;
   const items = (
     <React.Fragment>
@@ -32,19 +34,22 @@ const SocialBox = ({socialBoxContent}) => {
   );
 };
 
-
-SocialBoxItem.propTypes = {
-  auditions: PropTypes.shape({count: PropTypes.number}),
-  likes: PropTypes.shape({count: PropTypes.number}),
-  comments: PropTypes.shape({count: PropTypes.number}),
-  shares: PropTypes.shape({count: PropTypes.number})
+SocialBox.propTypes = {
+  socialBoxContent: PropTypes.objectOf({
+    auditions: PropTypes.shape({ count: PropTypes.number }),
+    likes: PropTypes.shape({ count: PropTypes.number }),
+    comments: PropTypes.shape({ count: PropTypes.number }),
+    shares: PropTypes.shape({ count: PropTypes.number }),
+  }),
 };
 
-SocialBoxItem.defaultProps = {
-  auditions: {count: 0},
-  likes: {count: 0},
-  comments: {count: 0},
-  shares: {count: 0},
+SocialBox.defaultProps = {
+  socialBoxContent: {
+    auditions: { count: 0 },
+    likes: { count: 0 },
+    comments: { count: 0 },
+    shares: { count: 0 },
+  },
 };
 
 export default SocialBox;
