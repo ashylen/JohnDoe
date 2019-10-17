@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/JohnDoe/static/media/header-logo.2d644319.png"
   },
   {
-    "revision": "2684fe5f9c2b9f2cbdec",
+    "revision": "d07a0b58e21bbdf6b772",
     "url": "/JohnDoe/static/css/main.4d877133.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/JohnDoe/static/media/header-bg.1c4001d3.png"
   },
   {
-    "revision": "2684fe5f9c2b9f2cbdec",
-    "url": "/JohnDoe/static/js/main.2684fe5f.chunk.js"
+    "revision": "d07a0b58e21bbdf6b772",
+    "url": "/JohnDoe/static/js/main.d07a0b58.chunk.js"
   },
   {
     "revision": "6b0cdff000b2bbc9333d00572dc2b767",
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/JohnDoe/static/css/1.cd20def0.chunk.css"
   },
   {
-    "revision": "1b5a299343d855662e232fa56881d052",
+    "revision": "1bd699f9d866f1d1d88895c558b0e5cd",
     "url": "/JohnDoe/index.html"
   }
 ];
